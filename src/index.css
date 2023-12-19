@@ -68,7 +68,7 @@ button:focus-visible {
   
   padding: 0 2rem;
   padding-top: 3rem;
-  background-image: url(bg-card.png);
+  background-image: url(assets/bg-card.png);
   background-repeat: no-repeat;
   background-size: cover;
   overflow-y: auto;
