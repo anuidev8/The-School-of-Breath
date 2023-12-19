@@ -1,0 +1,223 @@
+/* MainPage.css */
+.swiper-button-prev, .swiper-button-next {
+    color: #fbfbfb; /* or any color you prefer */
+  
+    top: 80%; /* adjust as needed */
+  }
+  
+  .swiper-button-prev {
+    left: 10px; /* adjust as needed */
+  }
+  
+  .swiper-button-next {
+    right: 10px; /* adjust as needed */
+  }
+
+  .active {
+    background-color: #110f5b87; /* Example: green background for active items */
+    color: white;
+    border-radius: .3rem;
+    /* Add other styles as needed */
+  }
+
+  /* MainPage.css */
+.play-stop-btn {
+  /* Button styling */
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #4CAF50; /* Example color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* Add more styling as needed */
+}
+
+.audio-control-modal {
+  width: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+.audio-control-modal button {
+  border-radius: 8px;
+  
+
+  
+  font-weight: 500;
+  font-family: inherit;
+  padding: .5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: rgb(61, 61, 61);
+  background: none;
+  border: none;
+  outline: none;
+  font-size: .9rem;
+  background-color: rgb(205, 205, 205);
+}
+
+
+.main-page{
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+ /*  background-image: linear-gradient(to top,#07325c,#1275c7); */
+ background-image: url(bg-card.png);
+  
+}
+
+.cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+ 
+  
+}
+.cover-0{
+  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.661),rgba(17, 16, 80, 0.536));
+}
+
+.cover-1{
+  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(214, 198, 25, 0.35));
+}
+
+ .cover-2{
+  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(29, 169, 225, 0.618));
+}
+
+ .cover-3{
+  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(29, 225, 186, 0.503));
+}
+.main-page-backgrounds{
+  height: 100vh;
+  
+}
+.control{
+  position: absolute;
+  bottom: 30%;
+  z-index: 100;
+}
+.control {
+  border-radius: 8px;
+  
+
+  
+  font-weight: 500;
+  font-family: inherit;
+
+  cursor: pointer;
+  color: white;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.play  {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: rgba(255, 255, 255, 0.512);
+    border-radius: 50%;
+    color: white;
+}
+
+.play{
+  bottom: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timer{
+  color: 'white';
+  position: absolute;
+  top: 2%;
+  left: 10%;
+  height: 2.5rem;width: 4rem;
+  background-color: rgba(255, 255, 255, 0.408);
+}
+
+.setting{
+  color: 'white';
+  position: absolute;
+  top: 2%;
+  left: 28%;
+  height: 2.5rem;width: 4rem;
+  background-color: rgba(255, 255, 255, 0.408);
+}
+
+.effects-box{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 120;
+  height: 15rem;
+}
+
+.sound-effects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sound-effects figure{
+  position: relative;
+  display: flex;
+  width: 30px;
+  height: 30px;
+ 
+  justify-content: center;
+  align-items: center;
+  
+  border-radius: 50%;
+}
+
+.slider {
+  /* width: 300px; */
+  text-align: center;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  
+  
+  
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /*
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: mandatory;
+  */
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  scroll-snap-align: start;
+  
+  
+}
+
+  
