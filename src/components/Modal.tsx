@@ -39,10 +39,11 @@ interface AudioControlModalProps {
           {
             soundEffectRefs && 
             Array.from(soundEffectRefs.keys()).map((effectName) => (
+              
                 <SoundEffectControl
                   key={effectName}
                   effectName={effectName}
-                  audioRef={soundEffectRefs.get(effectName)}
+                  audioRef={soundEffectRefs.get(effectName) }
                 />
               ))
           }
