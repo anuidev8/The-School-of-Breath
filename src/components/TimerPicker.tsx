@@ -31,7 +31,7 @@ type TimerPickerProps = {
  */
   const [remainingSeconds, setRemainingSeconds] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
-  const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
+  const [timerId, setTimerId] = useState<ReturnType<typeof setInterval> | null>(null);
   const [timeUpMessage, setTimeUpMessage] = useState('');
   useEffect(() => {
     if (timerActive && remainingSeconds > 0) {
