@@ -37,4 +37,22 @@
   .timer-modal-close{
     transform: translate(-50%, 110%);
   }
+
+  .btn {
+    border: none;
+    background-color: none;
+    padding: .4rem;
+    font-size: 1rem;
+    background-color: #e3e3e3;
+    margin-right: 1rem;
+    border-radius: .4rem;
+
+
+  }
+
+
+  .btn-close{
+    margin-top: 1rem;
+    background-color: rgb(241, 154, 154);
+  }
   

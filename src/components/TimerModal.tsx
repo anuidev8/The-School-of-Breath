@@ -8,21 +8,24 @@ interface TimerModalProps {
 
     onTimerEnd: () => void;
     onShow:boolean
+    resetSignal?:boolean
   }
   
   const TimerModal: React.FC<TimerModalProps> = ({
     onClose,
     onTimerEnd,
-    onShow
+    onShow,
+    resetSignal
   }) => {
    
   
     return (
       <div className={`timer-modal ${onShow ? 'timer-modal-open' : 'timer-modal-close' }`}>
         <TimerPicker
+        resetSignal={resetSignal}
         onTimerEnd={onTimerEnd}
         />
-        <button className="close-button" onClick={onClose}>Close</button>
+        <button className="close-button btn btn-close" onClick={onClose}>Close</button>
       </div>
     );
   };

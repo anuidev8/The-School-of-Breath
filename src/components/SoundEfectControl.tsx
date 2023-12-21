@@ -31,7 +31,7 @@ export const SoundEffectControl: FC<SoundEffectControlProps> = ({ effectName, au
     };
   
     return (
-      <div>
+      <div className="sound-effect-control">
         <h4>{effectName}</h4>
         <input
           type="range"

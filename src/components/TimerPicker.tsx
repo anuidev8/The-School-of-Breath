@@ -9,9 +9,10 @@ type TimerSelections = {
 
 type TimerPickerProps = {
     onTimerEnd: () => void; // Prop for the TimerEnd callback
+    resetSignal? : boolean
   };
   
-  const TimerPicker: React.FC<TimerPickerProps> = ({ onTimerEnd }) => {
+  const TimerPicker: React.FC<TimerPickerProps> = ({ onTimerEnd ,resetSignal}) => {
   const timerSelections: TimerSelections = {
     hours: Array.from({ length: 24 }, (_, i) => i.toString()),
     minutes: Array.from({ length: 60 }, (_, i) => i.toString()),
@@ -29,6 +30,7 @@ type TimerPickerProps = {
     return `${time.hours}h: Min ${time.minutes}${time.seconds}s`;
   };
  */
+
   const [remainingSeconds, setRemainingSeconds] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [timerId, setTimerId] = useState<ReturnType<typeof setInterval> | null>(null);
@@ -115,6 +117,13 @@ type TimerPickerProps = {
           parseInt(newValue.seconds);
         setRemainingSeconds(totalSeconds);
       };
+
+      
+    useEffect(()=>{
+      if(resetSignal) {
+        resetTimer()
+      }
+    },[resetSignal])
   return (
     <div>
       <Picker value={timerValue} onChange={handlePickerChange}>
@@ -130,9 +139,9 @@ type TimerPickerProps = {
       </Picker>
       <p>Selected Time: {formatSelectedTime()}</p>
       <p>Remaining Time: {remainingSeconds > 0 ? formatRemainingTime() : timeUpMessage}</p>
-      <button onClick={startTimer}>Start</button>
-      <button onClick={pauseTimer}>Pause</button>
-      <button onClick={resetTimer}>Reset</button>
+      <button className='btn btn-start' onClick={startTimer}>Start</button>
+      <button className='btn btn-pause' onClick={pauseTimer}>Pause</button>
+      <button  className='btn btn-reset'onClick={resetTimer}>Reset</button>
     </div>
   );
 };

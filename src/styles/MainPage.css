@@ -60,44 +60,47 @@
   border: none;
   outline: none;
   font-size: .9rem;
-  background-color: rgb(205, 205, 205);
+  background-color: rgb(225, 225, 225);
 }
+
+.sound-effect-control h4{
+  margin: 0;
+  transform: translateY(9px);
+ 
+}
+.sound-effect-control {
+  background-color: #e1e1e187;
+  border-radius: .5rem;
+  margin-top:1rem;
+  padding: .2rem;
+}
+
 
 
 .main-page{
   position: relative;
   height: 100vh;
   overflow: hidden;
-  overflow-y: auto;
+  
  /*  background-image: linear-gradient(to top,#07325c,#1275c7); */
  background-image: url(https://res.cloudinary.com/dnmjmjdsj/image/upload/v1703005944/image/bg-card_stk9jw.png);
   
 }
 
-.cover{
+.main-page::before{
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
- 
+  /* background-image: linear-gradient(to top,#161517ad 20%,black 60%); */
+  background-image: linear-gradient(to top,#161517ad 20%,black 40%); 
   
 }
-.cover-0{
-  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.661),rgba(17, 16, 80, 0.536));
-}
 
-.cover-1{
-  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(214, 198, 25, 0.35));
-}
 
- .cover-2{
-  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(29, 169, 225, 0.618));
-}
 
- .cover-3{
-  background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(29, 225, 186, 0.503));
-}
 .main-page-backgrounds{
   height: 100vh;
   
@@ -128,6 +131,14 @@
     background-color: rgba(255, 255, 255, 0.512);
     border-radius: 50%;
     color: white;
+}
+
+.likes{
+  top: 2%;
+  left: 45%;
+  width: 3rem;
+  height: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.512);
 }
 
 .play{
@@ -218,6 +229,55 @@
   scroll-snap-align: start;
   
   
+}
+
+.like-button-main{
+  bottom: 0;
+  height: 3rem;
+  top: 49%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.music-list-cover{
+  top: 14%;
+  position: absolute;
+  z-index: 90;
+  margin: 0;
+  background-color: black;
+}
+
+.music-list-cover img{
+  width: 90%;
+  object-fit: contain;
+  height: 40vh;
+  object-position: 0 60px;
+  
+  
+}
+
+.empty-state{
+  position: relative;
+  color: white;
+  z-index: 100;
+  background-color:#2012e62b ;
+  padding: 1rem;
+  border-radius: .5rem;
+  
+}
+
+.empty-button {
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem;
+  position: relative;
+  background: none;
+  border: none;
+  background-color: #ffffff;
+  z-index: 100;
+  color: #211b71;
+  font-size: 1rem;
+  border-radius: .4rem;
 }
 
   

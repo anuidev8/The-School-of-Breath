@@ -35,7 +35,7 @@ interface AudioControlModalProps {
           />
         </div>
         <div>
-          <label>Effects Volume: </label>
+          <label style={{ fontWeight:'bold',marginTop:'2px' }}>Effects Volume: </label>
           {
             soundEffectRefs && 
             Array.from(soundEffectRefs.keys()).map((effectName) => (
@@ -49,7 +49,7 @@ interface AudioControlModalProps {
           }
        
         </div>
-        <button onClick={onClose}>Close</button>
+        <button className='btn  close-btn' onClick={onClose}>Close</button>
       </div>
     );
   };

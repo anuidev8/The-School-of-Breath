@@ -41,40 +41,9 @@
   color: #888;
 }
 
-.musicList{
-  position: relative;
-  margin:0;
-  margin-top: 2rem;
-  padding: 0;
-  padding-bottom: 5rem;
-  z-index: 100;
-}
 
-.musicList li {
-  height: 9rem;
-  margin-bottom: 1rem;
-  
-}
 
-.musicList li button{
-  position: relative;
-  font-size: 1.3rem;
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: medium;
-  height: 100%;
-  width: 100%;
-  z-index: 100;
-  background-color: none;
-  background: none;
-  border: none;
-  color: white;
-}
-
-.musicList li button .cover{
+/* .musicList li button .cover{
   position: absolute;
   top: 0;
   left: 0;
@@ -94,43 +63,16 @@
 
 .musicList li button .cover-3{
   background-image: linear-gradient(to top, rgba(0, 64, 255, 0.495),rgba(29, 225, 186, 0.503));
-}
-#musicList li button svg {
-  position: relative;
-  z-index: 100;
-  margin-top: 1rem;
-  color: white;
-}
+} */
 
-.music-list-audio{
-  position: relative;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: .5rem;
-  overflow: hidden;
-  filter: contrast(-40%);
- 
- 
-}
-.music-list-audio h3{
-  color: white;
-  position: relative;
-  z-index: 100;
-}
-.music-list-audio-1{
-  /* background-image: url(https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536537/audios/bg/9_rjzerz.png); */
-  background-image: url(https://res.cloudinary.com/dnmjmjdsj/image/upload/v1703005944/image/bg-card_stk9jw.png)
-  
-  
-}
+
 
 
 .wheel{
   position: absolute;
   left: 40%;
   transform: translateX(-50%);
-  top: 10%;
+  top: 24%;
   width: 300px;
   height: 300px;
   z-index: 100;
@@ -142,9 +84,13 @@
   
   object-fit: contain;
   object-position: center;
-  animation: rotate-animation 10s infinite linear;
+  
   
 }
+
+.wheel-active img {
+  animation: rotate-animation 10s infinite linear;
+} 
 
 
 
@@ -159,4 +105,32 @@
 100% {
   transform: rotate(360deg);
 }
+}
+
+.welcome-page{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-page h1{
+  font-size: 2.1rem;
+  color: #211B71;
+}
+
+.welcome-page button{
+  background: none;
+  border: none;
+  padding: 1rem;
+  background-color:#211B71 ;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+  border-radius: .3rem;
+  margin-top: 2rem;
+}
+
+.welcome-page p{
+  font-size: 1.2rem;
+  padding: 1rem;
 }
