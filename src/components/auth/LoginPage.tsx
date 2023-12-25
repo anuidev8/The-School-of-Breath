@@ -20,7 +20,7 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
         <figure>
             <img width="210" height="210" src='/logo.png' />
         </figure>
-         <h1 className='title-login'>Welcome to Our App</h1>
+         <h1 className='title-login'>Welcome</h1>
     <form className='form' onSubmit={handleSubmit} style={{  marginTop: '20px' }}>
       <input 
         type="email"
