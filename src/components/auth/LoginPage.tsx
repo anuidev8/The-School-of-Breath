@@ -16,7 +16,7 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <main className='login-page'>
+    <main >
         <figure>
             <img width="210" height="210" src='/logo.png' />
         </figure>
@@ -39,7 +39,7 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
       <div>
 
       <button  className='login-btn' type="submit" >Login</button>
-      <button className='register-btn' >Register</button>
+     
       </div>
     </form>
     </main>

@@ -1,15 +1,15 @@
 import {BrowserRouter } from 'react-router-dom';
 
 import { BackgroundProvider } from './contexts/BackgroundContext'
-import Routes from './routes'
 import './App.css'
+import { WrapperRoutes } from './MainRoutes';
 function App() {
 
 
   return (
     <BackgroundProvider>
       <BrowserRouter>
-        <Routes />
+        <WrapperRoutes/>
       </BrowserRouter>
     </BackgroundProvider>
   )
