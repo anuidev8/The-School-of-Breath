@@ -17,12 +17,13 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin,isLoading }) => {
   };
 
   return (
-    <main >
+    <main style={{ width:'100%' }} >
         <figure>
-            <img width="210" height="210" src='/logo.png' />
+            <img width="210" height="210" src='https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702506419/audios/logo_vsw2tl.png' />
         </figure>
          <h1 className='title-login'>Welcome</h1>
     <form className='form' onSubmit={handleSubmit} style={{  marginTop: '20px' }}>
+    <div className="form-input">
       <input 
         type="email"
         placeholder="Email"
@@ -30,6 +31,8 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin,isLoading }) => {
         onChange={(e) => setEmail(e.target.value)}
        
       />
+      </div>
+      <div className="form-input">
       <input 
         type="password"
         placeholder="Password"
@@ -37,6 +40,7 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin,isLoading }) => {
         onChange={(e) => setPassword(e.target.value)}
        
       />
+      </div>
       <div>
 
       <button  className='login-btn' type="submit" >{!isLoading ? 'Login' : 'Entering..'}</button>
