@@ -1,15 +1,20 @@
 // Import navigation and state management libraries
 
-import { useEffect, useState } from "react";
+import { useEffect,  useState } from "react";
 import { useBackground} from "../contexts/BackgroundContext";
 import { useNavigate } from 'react-router-dom';
 import '../styles/MenuPage.css'
 
+import {
+
+  useQuery,
+} from '@tanstack/react-query'
 import { Swiper,  SwiperSlide } from "swiper/react";
+
 export const menuList = [
   {
     id:1,
-    name:'ANXIETY RELIEF',
+    name:'ANXIETY RELIEF SLEEP MUSIC 396Hz',
     image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536537/audios/bg/9_rjzerz.png',
     audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702486267/audios/bg/MWAA0015_and0v7.mp3',
     description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Dark Screen | Sleep Aid | 8 hour'
@@ -30,10 +35,45 @@ export const menuList = [
   },
   {
     id:4,
-    name:'FALL ASLEEP FAST',
+    name:'Body Healing solfeggio frequencies',
+    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536657/audios/bg/4_oqb884.png',
+    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702508866/audios/MWAA0037_1_zzpa2p.mp3',
+    description:'BLACK SCREEN SLEEP MUSIC ☯ All 9 solfeggio frequencies ☯ Body Healing'
+  },
+  {
+    id:5,
+    name:'Sleep Soundly with Full Body Healing',
+    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702537474/audios/bg/2_nyeole.png',
+    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702509830/audios/bg/MWAA0043_1_zo2idb.mp3',
+    description:'Sleep Soundly with Full Body Healing | Black Screen Sleep Music with 528 Hz'
+  },
+  {
+    id:6,
+    name:'Deep Sleep | Full Body Healing',
+    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536931/audios/bg/6_m0uwed.png',
+    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535257/audios/bg/MWAA0058_vfe3as.mp3',
+    description:'Deep Sleep | Full Body Healing | Solfeggio Frequencies | Black Screen'
+  },
+  {
+    id:7,
+    name:'Fall Asleep Fast 432 Hz🌙✨',
     image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536028/audios/bg/1_fivi7q.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702508030/audios/MWAA0032_1_vdhyfa.mp3',
+    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535686/audios/bg/MWAA0066_mhcerv.mp3',
     description:'Fall Asleep Fast 432 Hz🌙✨ The Power of Theta Waves and Black Screen Sleep Music 🎵'
+  },
+  {
+    id:8,
+    name:'Sleep Music with Solfeggio Frequencies',
+    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702537213/audios/bg/3_zkyivk.png',
+    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535809/audios/bg/MWAA0070_hxj9s3.mp3',
+    description:'Black Screen 💤 Full Body Healing Sleep Music with Solfeggio Frequencies'
+  },
+  {
+    id:9,
+    name:'Full Body Healing with All 9 Solfeggio Frequencies',
+    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702537213/audios/bg/3_zkyivk.png',
+    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535938/audios/bg/MWAA0081_rt5pjf.mp3',
+    description:'Full Body Healing with All 9 Solfeggio Frequencies ☯ BLACK SCREEN SLEEP MUSIC'
   },
   
 ]
@@ -49,9 +89,32 @@ const MenuPage = () => {
 
     const [allMusic] = useState(menuList);
     const [favoriteMusic, setFavoriteMusic] = useState(new Set());
+
+    const token : string = localStorage.getItem('authorization') ?? ''
+ 
+    
+    const { isPending, error } = useQuery({
+      queryKey: ['repoData'],
+      queryFn: () =>
+        fetch('https://angel.sorfin.com.co/musics',{
+          headers:{
+            "ssid":token
+          }
+        }).then((res) =>
+          res.json(),
+        ),
+        enabled:!!token
+    })
   
-  
-    // Load favorites from local storage when the component mounts
+  /*   const menuList = useMemo(()=>{
+      return data.data.length > 0  ? data.data.map((item)=>{
+        return {
+          id:item._id,
+          description:
+        }
+      }) :[]
+    },[]) */
+   // Load favorites from local storage when the component mounts
     useEffect(() => {
       const storedFavorites = JSON.parse(`${localStorage.getItem('favoriteMusic')}`) || [];
       setFavoriteMusic(new Set(storedFavorites));
@@ -80,7 +143,21 @@ const MenuPage = () => {
       : allMusic; */
 
       const favoriteMusicList = allMusic.filter((music) => favoriteMusic.has(music.id))
+
+      if(isPending){
+       return  <div className="menu-page" style={{minHeight:'100vh'}}>
+       <div  className="spinner"></div>
+       <h1 style={{ color:'white',position:'relative',zIndex:'100' }}>Getting list </h1>
+     </div>
+      }
+
+      if(error){
+        return <div className="menu-page" style={{minHeight:'100vh'}}>
+        <h1 style={{ color:'white' }}>Is not possible to load the list </h1>
+      </div>
+      }
   return (
+    
     <div className="menu-page" style={{minHeight:'100vh',}}>
       <h1 className="menu-title">Select Sleep Music Background</h1>
      {/*  <button style={{position:'relative',zIndex:100}} onClick={toggleView}>
@@ -235,6 +312,7 @@ const MenuPage = () => {
       </div>
      
     </div>
+  
   );
 };
 
