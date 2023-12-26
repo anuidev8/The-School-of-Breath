@@ -1,17 +1,27 @@
-import {BrowserRouter } from 'react-router-dom';
-
-import { BackgroundProvider } from './contexts/BackgroundContext'
+import {BrowserRouter, Route } from 'react-router-dom';
 import './App.css'
-import { WrapperRoutes } from './MainRoutes';
+
+import { AppContextProvider } from './contexts/AppContextProvider';
+import { RouteWithNotFound } from './routes/RoutesWithNotFound';
+import { AuthGuard } from './routes/AuthGuard';
+import { PrivateRoutes } from './routes/PrivateRoutes';
+
+import { Auth } from './components/auth';
 function App() {
 
 
   return (
-    <BackgroundProvider>
+    <AppContextProvider>
       <BrowserRouter>
-        <WrapperRoutes/>
+        <RouteWithNotFound>
+          <Route path='/login' element={<Auth />} />
+          <Route element={<AuthGuard privateValidation={true} />}>
+            <Route path='/*' element={<PrivateRoutes />}></Route>
+          </Route>
+        </RouteWithNotFound>
       </BrowserRouter>
-    </BackgroundProvider>
+   
+      </AppContextProvider>
   )
 }
 

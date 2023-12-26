@@ -4,9 +4,10 @@ import '../../styles/AuthPage.css'
 // Define an interface for the props
 interface LoginProps {
   onLogin: (email: string, password: string) => void;
+  isLoading:boolean
 }
 
-const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
+const LoginPage: React.FC<LoginProps> = ({ onLogin,isLoading }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -38,7 +39,7 @@ const LoginPage: React.FC<LoginProps> = ({ onLogin }) => {
       />
       <div>
 
-      <button  className='login-btn' type="submit" >Login</button>
+      <button  className='login-btn' type="submit" >{!isLoading ? 'Login' : 'Entering..'}</button>
      
       </div>
     </form>

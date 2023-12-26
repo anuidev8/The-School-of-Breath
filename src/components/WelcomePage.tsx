@@ -6,6 +6,7 @@ export const WelcomePage = () =>{
     const navigate = useNavigate()
 
     const onNavigate = () => {
+        localStorage.setItem('isWelcome','true')
         navigate('/menu')
     }
     return(

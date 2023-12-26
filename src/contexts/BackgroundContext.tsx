@@ -22,7 +22,7 @@ const defaultState: BackgroundContextType = {
   export const useBackground = () => useContext(BackgroundContext);
 
 interface BackgroundProviderTypes {
-    children:React.ReactNode
+    children:React.JSX.Element
 }
 
 export const BackgroundProvider: FC<BackgroundProviderTypes> = ({ children }) => {

@@ -1,6 +1,4 @@
 import React, { createContext, useState, useContext, useEffect, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -8,39 +6,41 @@ interface AuthContextType {
 }
 
 
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   setIsAuthenticated: () => {},
 });
 
 interface AuthProviderProps {
-  children: React.ReactNode;
+  children: React.JSX.Element;
 }
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch the authentication state from your API
-    const checkAuthStatus = async () => {
+    
       // Replace with your API call
       //const response = await fetch('/api/check-auth');
-      const response = {
-        ok:false
-      }
+    
      
+      const auth = localStorage.getItem('isAuth')
+      const authorization = localStorage.getItem('authorization')
+    
       
-      if (response.ok) {
+      if (auth && authorization) {
         setIsAuthenticated(true);
-        navigate('/menu');
+       // navigate('/menu');
       } else {
-        navigate('/login');
+        //navigate('/login');
+        setIsAuthenticated(false);
       }
-    };
+    
 
-    checkAuthStatus();
-  }, [navigate]);
+  
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
