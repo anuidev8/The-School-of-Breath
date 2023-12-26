@@ -2,6 +2,7 @@
     position: relative;
     height: 100vh;
     overflow: hidden;
+    padding: 0 2.5rem;
    /*  background-image: url(https://res.cloudinary.com/dnmjmjdsj/image/upload/v1703005944/image/bg-card_stk9jw.png); */
     background-color: #17152e;
     display: flex;
@@ -21,9 +22,7 @@
     margin: 10px;
   }
 
-  .form{
-    padding:  0 3rem;    
-  }
+
   .form input {
     border: 0;
     padding: .9rem;
@@ -48,7 +47,23 @@
     background-color: #211B71;
   }
   .register-btn{
+    width: 100%;
     background-color:#F5A624 ;
+    border: none;
+    color: white;
+    font-weight: .2rem;
     margin-top: 1rem;
+    padding: .9rem;
   }
+
+  .form-input{
+    display: flex;
+   
+  }
+  .auth-input{
+    width: 100%;
+    display: flex;
+    
+  }
+ 
   
