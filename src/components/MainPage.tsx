@@ -70,7 +70,7 @@ const MainPage = () => {
 
   useEffect(() => {
     if (hasInteracted) {
-      console.log("isloa");
+      
 
       const musicSrc = getAudioSource(selectedBackground);
       const music = new Howl({
@@ -85,9 +85,9 @@ const MainPage = () => {
       setIsPlaying(true);
 
       // Cleanup function to stop the music when the component unmounts or the source changes
-      /* return () => {
+      return () => {
         music.stop();
-      }; */
+      }; 
     }
   }, [selectedBackground, hasInteracted]);
 
@@ -120,11 +120,11 @@ const MainPage = () => {
     });
 
     // Cleanup: stop all sounds when the component unmounts
-    /* return () => {
+     return () => {
       soundEffectRefs.current.forEach((sound) => {
         sound.stop();
       });
-    }; */
+    }; 
   }, [activeSoundEffects]);
 
   // ... other existing useEffect hooks and functions
