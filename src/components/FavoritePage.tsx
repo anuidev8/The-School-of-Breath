@@ -4,39 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useBackground} from "../contexts/BackgroundContext";
 import { useNavigate } from 'react-router-dom';
 import '../styles/MenuPage.css'
+import { menuList } from "../SleepMusic";
 
 
-export const menuList = [
-  {
-    id:1,
-    name:'ANXIETY RELIEF',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536537/audios/bg/9_rjzerz.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702486267/audios/bg/MWAA0015_and0v7.mp3',
-    description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Dark Screen | Sleep Aid | 8 hour'
-  },
-  {
-    id:2,
-    name:'CHAKRA BALANCE',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536426/audios/bg/8_pvaajv.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702505835/audios/bg/MWAA0016_1_z6qzdz.mp3',
-    description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Dark Screen | Sleep Aid | 8 hour'
-  },
-  {
-    id:3,
-    name:'REDUCE ANXIETY',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536145/audios/bg/7_x72dir.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702508030/audios/MWAA0032_1_vdhyfa.mp3',
-    description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Dark Screen | Sleep Aid | 8 hour'
-  },
-  {
-    id:4,
-    name:'FALL ASLEEP FAST',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536028/audios/bg/1_fivi7q.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702508030/audios/MWAA0032_1_vdhyfa.mp3',
-    description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Dark Screen | Sleep Aid | 8 hour'
-  },
-  
-]
 const FavoritePage = () => {
     const history = useNavigate ();
     const { selectBackground,handleUserInteraction } = useBackground();

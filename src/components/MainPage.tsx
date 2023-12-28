@@ -7,9 +7,9 @@ import "swiper/css/navigation";
 import "../styles/MainPage.css";
 import { AudioControlModal } from "./Modal";
 import TimerModal from "./TimerModal";
-import { menuList } from "./MenuPage";
 import { useNavigate } from "react-router-dom";
 import { Howl } from "howler";
+import { menuList } from "../SleepMusic";
 
 const soundEffectListMap = [
   {
@@ -76,7 +76,8 @@ const MainPage = () => {
   const getAudioSource = (background: string) => {
     const findAudioName =
       menuList.find((item) => item.name === background)?.audio ?? "";
-
+    
+    
     return findAudioName;
   };
 
