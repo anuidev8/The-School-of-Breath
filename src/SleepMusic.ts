@@ -23,15 +23,15 @@ export const menuList = [
   {
     id:4,
     name:'Body Healing solfeggio frequencies',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536657/audios/bg/4_oqb884.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702508866/audios/MWAA0037_1_zzpa2p.mp3',
+    image:'images/MWAA0037_1_zzpa2p.png',
+    audio:'audios/MWAA0037_1_zzpa2p.mp3',
     description:'BLACK SCREEN SLEEP MUSIC ☯ All 9 solfeggio frequencies ☯ Body Healing'
   },
   {
     id:5,
     name:'Sleep Soundly with Full Body Healing',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702537474/audios/bg/2_nyeole.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702509830/audios/bg/MWAA0043_1_zo2idb.mp3',
+    image:'images/MWAA0043_1_zo2idb.png',
+    audio:'audios/MWAA0043_1_zo2idb.mp3',
     description:'Sleep Soundly with Full Body Healing | Black Screen Sleep Music with 528 Hz'
   },
   {
