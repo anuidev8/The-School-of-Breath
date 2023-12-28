@@ -8,7 +8,7 @@ export const menuList = [
   },
   {
     id:2,
-    name:'CHAKRA BALANCE SOLFEGGIO FREQUENCIES',
+    name:'CHAKRA BALANCE',
     image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536426/audios/bg/8_pvaajv.png',
     audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702505835/audios/bg/MWAA0016_1_z6qzdz.mp3',
     description:'Black Screen Sleep Music ☯ Balance Chakras while Sleeping ☯ SOLFEGGIO FREQUENCIES'
