@@ -37,29 +37,29 @@ export const menuList = [
   {
     id:6,
     name:'Deep Sleep | Full Body Healing',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536931/audios/bg/6_m0uwed.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535257/audios/bg/MWAA0058_vfe3as.mp3',
+    image:'images/MWAA0058_vfe3as.png',
+    audio:'audios/MWAA0058_vfe3as.mp3',
     description:'Deep Sleep | Full Body Healing | Solfeggio Frequencies | Black Screen'
   },
   {
     id:7,
     name:'Fall Asleep Fast 432 Hz🌙✨',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536028/audios/bg/1_fivi7q.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535686/audios/bg/MWAA0066_mhcerv.mp3',
+    image:'images/MWAA0066_mhcerv.png',
+    audio:'audios/MWAA0066_mhcerv.mp3',
     description:'Fall Asleep Fast 432 Hz🌙✨ The Power of Theta Waves and Black Screen Sleep Music 🎵'
   },
   {
     id:8,
     name:'Sleep Music with Solfeggio Frequencies',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702537213/audios/bg/3_zkyivk.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535809/audios/bg/MWAA0070_hxj9s3.mp3',
+    image:'images/MWAA0070_hxj9s3.png',
+    audio:'audios/MWAA0070_hxj9s3.mp3',
     description:'Black Screen 💤 Full Body Healing Sleep Music with Solfeggio Frequencies'
   },
   {
     id:9,
     name:'Full Body Healing with All 9 Solfeggio Frequencies',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702537213/audios/bg/3_zkyivk.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702535938/audios/bg/MWAA0081_rt5pjf.mp3',
+    image:'images/MWAA0081_rt5pjf',
+    audio:'audios/MWAA0081_rt5pjf.mp3',
     description:'Full Body Healing with All 9 Solfeggio Frequencies ☯ BLACK SCREEN SLEEP MUSIC'
   },
   
