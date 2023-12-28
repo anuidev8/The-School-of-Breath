@@ -58,7 +58,7 @@ export const menuList = [
   {
     id:9,
     name:'Full Body Healing with All 9 Solfeggio Frequencies',
-    image:'images/MWAA0081_rt5pjf',
+    image:'images/MWAA0081_rt5pjf.png',
     audio:'audios/MWAA0081_rt5pjf.mp3',
     description:'Full Body Healing with All 9 Solfeggio Frequencies ☯ BLACK SCREEN SLEEP MUSIC'
   },
