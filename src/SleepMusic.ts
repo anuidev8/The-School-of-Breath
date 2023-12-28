@@ -2,7 +2,7 @@ export const menuList = [
   {
     id:1,
     name:'ANXIETY RELIEF SLEEP MUSIC 396 Hz',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536537/audios/bg/9_rjzerz.png',
+    image:'images/MWAA0015_and0v7.png',
     audio:'audios/MWAA0015_and0v7.mp3',
     description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Dark Screen | Sleep Aid | 8 hour'
   },
