@@ -16,8 +16,8 @@ export const menuList = [
   {
     id:3,
     name:'REDUCE ANXIETY',
-    image:'https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702536145/audios/bg/7_x72dir.png',
-    audio:'https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702508030/audios/MWAA0032_1_vdhyfa.mp3',
+    image:'images/MWAA0032_1_vdhyfa.png',
+    audio:'audios/MWAA0032_1_vdhyfa.mp3',
     description:'BLACK SCREEN SLEEP MUSIC ☯ REDUCE ANXIETY ☯ 528 Hz Music'
   },
   {
