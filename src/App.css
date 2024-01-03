@@ -118,17 +118,7 @@
   color: #211B71;
 }
 
-.welcome-page button{
-  background: none;
-  border: none;
-  padding: 1rem;
-  background-color:#211B71 ;
-  font-size: 1.2rem;
-  color: white;
-  font-weight: bold;
-  border-radius: .3rem;
-  margin-top: 2rem;
-}
+
 
 .welcome-page p{
   font-size: 1.2rem;

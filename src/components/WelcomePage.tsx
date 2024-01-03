@@ -1,7 +1,7 @@
 
-import Lottie from "lottie-react";
-import sleepicon from '../assets/sleep.json'
 import { useNavigate } from "react-router-dom";
+import welcomebg from '../assets/welcomebg.gif'
+import  '../styles/WelcomePage.css'
 export const WelcomePage = () =>{
     const navigate = useNavigate()
 
@@ -11,13 +11,11 @@ export const WelcomePage = () =>{
     }
     return(
         <main className="welcome-page">
-            <div style={{ width:'280px' }} >
-            <Lottie   animationData={sleepicon} loop={true} />
-
-            </div>
-               <h1>Welcome aboard! 🌙✨"</h1> 
-               <p>Enjoy 7 days of free soothing tunes for your best sleep ever.</p>
-               <button onClick={onNavigate}>Start relaxing now!"</button>
+          
+                <figure className="bg-welcome-cover">
+                <img src={welcomebg} width={'100%'} height={'100%'} />
+                </figure>
+               <button  className="welcome-button" onClick={onNavigate}>Start relaxing now</button>
         </main>
     )
 }
