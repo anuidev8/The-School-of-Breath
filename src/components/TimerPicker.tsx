@@ -1,3 +1,4 @@
+import { Button } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import Picker from 'react-mobile-picker';
 
@@ -126,22 +127,27 @@ type TimerPickerProps = {
     },[resetSignal])
   return (
     <div>
-      <Picker value={timerValue} onChange={handlePickerChange}>
+      <Picker color='red' value={timerValue} onChange={handlePickerChange}>
         {(Object.keys(timerSelections) as Array<keyof TimerSelections>).map(part => (
-          <Picker.Column key={part} name={part}>
+          <Picker.Column   key={part} name={part}>
             {timerSelections[part].map(option => (
-              <Picker.Item key={option} value={option}>
+              <Picker.Item className='text-black'  style={{
+                borderColor:'black',
+                
+               
+              }}   frameBorder={2} key={option} value={option}>
                 {option}
               </Picker.Item>
             ))}
           </Picker.Column>
         ))}
       </Picker>
-      <p>Selected Time: {formatSelectedTime()}</p>
-      <p>Remaining Time: {remainingSeconds > 0 ? formatRemainingTime() : timeUpMessage}</p>
-      <button className='btn btn-start' onClick={startTimer}>Start</button>
-      <button className='btn btn-pause' onClick={pauseTimer}>Pause</button>
-      <button  className='btn btn-reset'onClick={resetTimer}>Reset</button>
+      <p className='text-black '>Selected Time: {formatSelectedTime()}</p>
+      <p className='text-black'>Remaining Time: {remainingSeconds > 0 ? formatRemainingTime() : timeUpMessage}</p>
+      <div className='mt-5'></div>
+      <Button size='sm' className='mr-2 bg-black/50' onClick={startTimer}>Start</Button>
+      <Button size='sm' className='mr-2 bg-black/50' onClick={pauseTimer}>Pause</Button>
+      <Button size='sm' className='mr-2 bg-black/50' onClick={resetTimer}>Reset</Button>
     </div>
   );
 };

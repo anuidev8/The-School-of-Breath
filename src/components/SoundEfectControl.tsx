@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 import { useDeviceOS } from "../hooks/useDeviceOS";
+import { GoMute, GoUnmute } from "react-icons/go";
+import { Button } from "@nextui-org/react";
 
 interface SoundEffectControlProps {
   effectName: string;
@@ -33,8 +35,8 @@ export const SoundEffectControl: FC<SoundEffectControlProps> = ({
   };
 
   return (
-    <div className="sound-effect-control">
-      <h4>{effectName}</h4>
+    <div className="sound-effect-control flex items-center">
+      <h4 className="mt-0">{effectName}</h4>
       {os !== "iOS" && (
         <input
           type="range"
@@ -46,7 +48,7 @@ export const SoundEffectControl: FC<SoundEffectControlProps> = ({
           disabled={isMuted}
         />
       )}
-      <button onClick={toggleMute}>{isMuted ? "Unmute" : "Mute"}</button>
+      <Button isIconOnly size='sm' className='text-xl'  onClick={toggleMute}>{isMuted ? <GoUnmute />  : <GoMute/>}</Button>
     </div>
   );
 };

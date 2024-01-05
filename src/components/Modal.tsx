@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { SoundEffectControl } from './SoundEfectControl';
 import { useDeviceOS } from '../hooks/useDeviceOS';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import { GoMute  ,GoUnmute } from "react-icons/go";
 interface AudioControlModalProps {
-    onClose: () => void;
     audioRef: React.RefObject<HTMLAudioElement>;
     soundEffectRefs: Map<string, React.RefObject<HTMLAudioElement>>;
+    isOpen:boolean;
+    onOpenChange:()=>void
   }
 
-  export const AudioControlModal: React.FC<AudioControlModalProps> = ({ onClose, audioRef, soundEffectRefs }) => {
+  export const AudioControlModal: React.FC<AudioControlModalProps> = ({  audioRef, soundEffectRefs,isOpen,onOpenChange }) => {
     const [backgroundVolume, setBackgroundVolume] = useState(1);
     const os = useDeviceOS()
     const [isMuted, setIsMuted] = useState(false);
@@ -33,8 +36,13 @@ interface AudioControlModalProps {
       };
   
     return (
-      <div className="audio-control-modal">
-        <h2>Audio Controls</h2>
+      <Modal placement={'center'} isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Audio Controls</ModalHeader>
+              <ModalBody>
+            
         <div>
         <label>Background Volume: </label>
           {
@@ -51,7 +59,7 @@ interface AudioControlModalProps {
           />
             </>
           }
-          <button onClick={toggleMute}>{isMuted ? 'Unmute' : 'Mute'}</button>
+           <Button isIconOnly size='sm' className='text-xl' onClick={toggleMute}>{isMuted ? <GoUnmute /> : <GoMute/>}</Button>
         </div>
         <div>
           <label style={{ fontWeight:'bold',marginTop:'2px' }}>Effects Volume: </label>
@@ -68,7 +76,17 @@ interface AudioControlModalProps {
           }
        
         </div>
-        <button className='btn  close-btn' onClick={onClose}>Close</button>
-      </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+               
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      
     );
   };
