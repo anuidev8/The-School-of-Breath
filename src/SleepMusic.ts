@@ -62,5 +62,11 @@ export const menuList = [
     audio:'audios/MWAA0081_rt5pjf.mp3',
     description:'Full Body Healing with All 9 Solfeggio Frequencies ☯ BLACK SCREEN SLEEP MUSIC'
   },
-  
+  {
+    id:10,
+    name:'Deep Healing Sleep Music',
+    image:'images/MWAA0085.JPEG',
+    audio:'audios/MWAA0085.mp3',
+    description:'Deep Healing Sleep Music ☯ BLACK SCREEN SLEEP MUSIC'
+  },
 ]
