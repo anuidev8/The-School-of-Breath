@@ -7,14 +7,11 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
-  Link,
   Button,
   Card,
   CardHeader,
-
   Divider,
   Chip,
-  CardFooter,
 
 } from "@nextui-org/react";
 import { MdArrowBack } from "react-icons/md";
@@ -28,7 +25,7 @@ interface MenuProps {
 export function Menu({title,onBack}:MenuProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
+/*   const menuItems = [
     "Profile",
     "Dashboard",
     "Activity",
@@ -39,7 +36,7 @@ export function Menu({title,onBack}:MenuProps) {
     "Team Settings",
     "Help & Feedback",
     "Log Out",
-  ];
+  ]; */
 
   const user = localStorage.getItem('user')
 
