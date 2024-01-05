@@ -16,6 +16,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     overflow-y: auto;
+    height: 100vh;
     /* background-image: linear-gradient(to top,#0d0c1df4,#080c13); */
     
   }
@@ -35,6 +36,7 @@
     height: 100%;
   /*  background-image: linear-gradient(to top,#0d0c1d90,#080c13); */
    background-image: linear-gradient(to top,#14105390,#19145ef6);
+   z-index: 0;
   
   }  
 
@@ -118,7 +120,7 @@
     position: relative;
     color: white;
   /*   color: #f6bb0b; */
-  z-index: 100;
+ 
   }
   .subtitle::before {
     content: "";

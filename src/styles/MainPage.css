@@ -1,15 +1,15 @@
 /* MainPage.css */
-.swiper-button-prev, .swiper-button-next {
+.main-page .swiper-button-prev, .main-page .swiper-button-next {
     color: #fbfbfb; /* or any color you prefer */
   
     top: 80%; /* adjust as needed */
   }
   
-  .swiper-button-prev {
+  .main-page .swiper-button-prev {
     left: 10px; /* adjust as needed */
   }
   
-  .swiper-button-next {
+  .main-page .swiper-button-next {
     right: 10px; /* adjust as needed */
   }
 

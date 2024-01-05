@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
-
+import {Button} from "@nextui-org/react";
 interface ResponseType {
   info:string
 }
@@ -31,8 +31,8 @@ export const Auth = () => {
             "password":password,
           
           }
-          const saveUserInDb = await axios.post('https://angel.sorfin.com.co/auth/login',saveUserData)
-          const getUserFromSystemIo = await axios.get(`https://angel.sorfin.com.co/contact?email=${email}`)
+          const saveUserInDb = await axios.post('https://api-music-two.vercel.app/auth/login',saveUserData)
+          const getUserFromSystemIo = await axios.get(`https://api-music-two.vercel.app/contact?email=${email}`)
         if(saveUserInDb.data.success){
           
           if(getUserFromSystemIo.data.success && getUserFromSystemIo.data.data.items.length > 0){
@@ -78,7 +78,7 @@ export const Auth = () => {
   
 
   return (
-    <div className='login-page'>
+    <div className='flex justify-center -center flex-col h-screen' >
       {
         typeLogin === 'login' ?
         <LoginPage onLogin={handleLogin} isLoading={isLoading} />
@@ -88,14 +88,15 @@ export const Auth = () => {
      
      {
       typeLogin === 'login' &&
-      <div className='auth-input'>
-           <button className='register-btn' onClick={()=>changeType('register')} >Register</button>
+      <div className='flex justify-center items-center' >
+
+        <Button  className='w-full bg-secondary  max-w-sm mt-4' onClick={()=>changeType('register')} isLoading={isLoading}>Register</Button>
       </div>
      }
      {
       typeLogin === 'register' &&
-      <div className='auth-input'>
-       <button className='register-btn' onClick={()=>changeType('login')} >Login</button>
+      <div className=''>
+       <button className='' onClick={()=>changeType('login')} >Login</button>
        </div>
      }
       <ToastContainer />

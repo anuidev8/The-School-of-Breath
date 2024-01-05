@@ -45,7 +45,7 @@ export const RegisterPage: React.FC = () => {
           fullName: firstName,
         };
         const saveUserInDb = await axios.post(
-          "https://angel.sorfin.com.co/auth/register",
+          "http://localhost:3001/auth/register",
           saveUserData
         );
         if (saveUserInDb.data.success) {
