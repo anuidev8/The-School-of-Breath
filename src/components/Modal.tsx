@@ -11,6 +11,11 @@ interface AudioControlModalProps {
   }
 
   export const AudioControlModal: React.FC<AudioControlModalProps> = ({  audioRef, soundEffectRefs,isOpen,onOpenChange }) => {
+    const [muteStates, setMuteStates] = useState(new Map<string, boolean>());
+
+    const toggleMuteStates = (effectName: string) => {
+      setMuteStates(prevMuteStates => new Map(prevMuteStates).set(effectName, !prevMuteStates.get(effectName)));
+    };
     const [backgroundVolume, setBackgroundVolume] = useState(1);
     const os = useDeviceOS()
     const [isMuted, setIsMuted] = useState(false);
@@ -34,6 +39,8 @@ interface AudioControlModalProps {
         }
        
       };
+
+      
   
     return (
       <Modal placement={'center'} isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -63,17 +70,17 @@ interface AudioControlModalProps {
         </div>
         <div>
           <label style={{ fontWeight:'bold',marginTop:'2px' }}>Effects Volume: </label>
-          {
-            soundEffectRefs && 
-            Array.from(soundEffectRefs.keys()).map((effectName) => (
-              
-                <SoundEffectControl
-                  key={effectName}
-                  effectName={effectName}
-                  audioRef={soundEffectRefs.get(effectName) }
-                />
-              ))
-          }
+          {soundEffectRefs && 
+        Array.from(soundEffectRefs.keys()).map(effectName => (
+          <SoundEffectControl
+            key={effectName}
+            effectName={effectName}
+            audioRef={soundEffectRefs.get(effectName)}
+            isMuted={muteStates.get(effectName) || false}
+            onToggleMute={() => toggleMuteStates(effectName)}
+          />
+        ))
+      }
        
         </div>
               </ModalBody>

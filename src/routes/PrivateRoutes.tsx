@@ -12,7 +12,7 @@ export const PrivateRoutes = () =>{
     return(
         <RouteWithNotFound>
               <Route path="/unsubscribed" element={<UnsubscribedPage />} />
-              <Route index path="/welcome" element={<WelcomePage />} />
+              <Route index path="/" element={<WelcomePage />} />
               <Route element={<SubscriptionAuth />} >
                <Route  element={<Navigate to={'/menu'}/>} />
               <Route path="/menu" element={<MenuPage/>} />

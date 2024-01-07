@@ -381,7 +381,7 @@ const MainPage = () => {
     </button> */}
     <div style={{
       bottom:'12rem'
-    }} className="container-box absolute  w-full z-50">
+    }} className="container-box absolute  w-full z-10">
     <Button
           isIconOnly
           size="lg"

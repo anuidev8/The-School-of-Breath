@@ -1,7 +1,23 @@
 import React, { createContext, useState, useContext, useEffect, FC } from 'react';
+import { getPersistData } from '../utils/localstore';
 
+
+export interface User{
+  _id: string
+  email: string
+  fullName: string
+  suscription: boolean
+  isStartSubscription: boolean
+  createdAt: string
+  updatedAt: string
+  __v: number
+  promotionDays: number
+  id: string
+}
 interface AuthContextType {
   isAuthenticated: boolean;
+  user:User | null
+  setUser: (user:User | null) => void
   setIsAuthenticated: (isAuthenticated: boolean) => void;
 }
 
@@ -9,6 +25,8 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   setIsAuthenticated: () => {},
+  setUser: () => {},
+  user:null
 });
 
 interface AuthProviderProps {
@@ -17,6 +35,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [user , setUser] = useState<User | null>(null)
   //const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +45,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       //const response = await fetch('/api/check-auth');
     
      
-      const auth = localStorage.getItem('isAuth')
-      const authorization = localStorage.getItem('authorization')
+      const auth = getPersistData('isAuth')
+      const authorization = getPersistData('authorization')
     
       
       if (auth && authorization) {
@@ -43,7 +62,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated ,user,setUser}}>
       {children}
     </AuthContext.Provider>
   );

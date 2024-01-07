@@ -13,6 +13,9 @@ import {
 } from "@nextui-org/react";
 import { MdArrowBack } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+
+import { getPersistData } from "../../utils/localstore";
+import { filterByName } from "../../routes/SubscriptionAuth";
 interface MenuProps {
   title?: string;
   navBarClassName?: string;
@@ -20,15 +23,27 @@ interface MenuProps {
   onBack?: () => void;
 }
 
+function getPromotionCountdown(promotionDays:number) {
+  const maxDays = 7;
+  return maxDays - promotionDays;
+}
+
+
 export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  
 
-  const user = localStorage.getItem("user");
+  const user = getPersistData("user");
+  const userFromSystemeIo = getPersistData('userFromSystemeIo')
 
-  const userInfo = JSON.parse(`${user}`) ?? false;
+  const userInfo = user ?? false;
+  const onLogout = () =>{
+    localStorage.clear()
+    window.location.href = '/login' 
+  }
   return (
     <Navbar
-      className={`relative  bg-main ${navBarClassName}`}
+      className={`relative  bg-main fixed top-0 w-full left-0  ${navBarClassName}`}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
@@ -58,7 +73,7 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
       </NavbarContent>
 
       <NavbarMenu className="bg-black/40">
-        <NavbarItem>
+        <NavbarItem className="flex flex-col">
           {userInfo && (
             <Card className="max-w-[400px] bg-white/80 mt-4">
               <CardHeader className="flex gap-3">
@@ -71,14 +86,48 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
                     {userInfo.email}
                   </p>
                 </div>
+                {
+                  
+                  !userFromSystemeIo &&
                 <div>
-                  <Chip color="success">Subscribed</Chip>
-                  <p className="text-base">You have 7 days free</p>
+                  {
+                    userInfo.promotionDays < 8 ?
+                    <>
+                    <Chip color="success">Subscribed</Chip>
+                  <p className="text-base">{userInfo &&  `you've ${getPromotionCountdown(userInfo.promotionDays)} days free`}</p>
+                    </>
+                    :  <>
+                    <Chip color="warning">Subscribed</Chip>
+                  <p className="text-base">"your subscription is expired"</p>
+                    </>
+                  }
+                  
                 </div>
+                }
+
+{
+                  
+                  userFromSystemeIo &&
+                <div>
+                  {
+                    !userFromSystemeIo.unsubscribed && filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership')?
+                    <>
+                    <Chip color="success">Subscribed per months</Chip>
+                    </>
+                    :  <>
+                    <Chip color="warning">Subscribed</Chip>
+                  <p className="text-base">"your subscription is expired"</p>
+                    </>
+                  }
+                  
+                </div>
+                }
+               
               </CardHeader>
               <Divider />
             </Card>
           )}
+           <Button color="danger" onClick={onLogout} className="mt-5">Logout</Button>
         </NavbarItem>
       </NavbarMenu>
     </Navbar>
