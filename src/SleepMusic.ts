@@ -65,7 +65,7 @@ export const menuList = [
   {
     id:10,
     name:'Deep Healing Sleep Music',
-    image:'images/MWAA0085.JPEG',
+    image:'images/MWAA0085.png',
     audio:'audios/MWAA0085.mp3',
     description:'Deep Healing Sleep Music ☯ BLACK SCREEN SLEEP MUSIC'
   },
