@@ -37,13 +37,13 @@ const soundEffectListMap = [
     src: "https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702660090/audios/sounds/campfireinthegarden_ydrgyj.mp3",
   },
   {
-    name: "bellAudio",
+    name: "Bell",
     imageUrl:
       "https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702539357/audios/icons/7_rgwsr8.png",
     src: "https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702660121/audios/sounds/best-hypnotic-wind-chimes-long-nice-loop_eplorz.mp3",
   },
   {
-    name: "thunderAudio",
+    name: "Thunder",
     imageUrl:
       "https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702539337/audios/icons/3_a1etkv.png",
     src: "https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702540826/audios/icons/thunder-25689_r1bdzg.mp3",
