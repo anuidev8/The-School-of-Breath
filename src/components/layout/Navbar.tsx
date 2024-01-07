@@ -76,7 +76,7 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
         <NavbarItem className="flex flex-col">
           {userInfo && (
             <Card className="max-w-[400px] bg-white/80 mt-4">
-              <CardHeader className="flex gap-3">
+              <CardHeader className="flex gap-3 flex-col">
                 <div className="text-5xl">
                   <FaUserCircle />
                 </div>
