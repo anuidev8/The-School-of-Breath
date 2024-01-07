@@ -1,6 +1,7 @@
 export const Home = () => {
   return (
     <main className="h-screen flex justify-center  items-center">
+      <h1>home</h1>
       <figure className="flex justify-center align-center  ">
         <img
           width="210"
