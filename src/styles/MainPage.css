@@ -1,8 +1,8 @@
 /* MainPage.css */
 .main-page .swiper-button-prev, .main-page .swiper-button-next {
     color: #fbfbfb; /* or any color you prefer */
-  
-    top: 80%; /* adjust as needed */
+
+    top: 60%; /* adjust as needed */
   }
   
   .main-page .swiper-button-prev {
@@ -11,6 +11,9 @@
   
   .main-page .swiper-button-next {
     right: 10px; /* adjust as needed */
+  }
+  .main-page .swiper-button-disabled{
+    background-color: rgba(255, 255, 255, 0.193);
   }
 
   .active {
@@ -63,11 +66,7 @@
   background-color: rgb(225, 225, 225);
 }
 
-.sound-effect-control h4{
-  margin: 0;
-  transform: translateY(9px);
- 
-}
+
 .sound-effect-control {
   background-color: #e1e1e187;
   border-radius: .5rem;
@@ -81,7 +80,7 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
-  
+  overflow-y: auto;
  /*  background-image: linear-gradient(to top,#07325c,#1275c7); */
  background-image: url(https://res.cloudinary.com/dnmjmjdsj/image/upload/v1703005944/image/bg-card_stk9jw.png);
   
@@ -278,6 +277,19 @@
   color: #211b71;
   font-size: 1rem;
   border-radius: .4rem;
+}
+
+.container-box .arrow {
+  position: absolute;
+  top: 50%;
+  margin-top: -5px;
+  z-index: 0;
+}
+.container-box .arrow.arrow-left {
+  left: 5%;
+}
+.container-box .arrow.arrow-right {
+  right: 5%;
 }
 
   

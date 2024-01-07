@@ -1,40 +1,39 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDeviceOS } from "../hooks/useDeviceOS";
+import { GoMute, GoUnmute } from "react-icons/go";
+import { Button } from "@nextui-org/react";
 
 interface SoundEffectControlProps {
   effectName: string;
   audioRef: React.RefObject<HTMLAudioElement> | undefined;
+  isMuted: boolean; // Added prop for the mute state
+  onToggleMute: () => void; // Added prop for the function to toggle mute
 }
+
 export const SoundEffectControl: FC<SoundEffectControlProps> = ({
   effectName,
   audioRef,
+  isMuted, // Using the prop
+  onToggleMute, // Using the prop
 }) => {
   const [volume, setVolume] = useState(1);
-  const [isMuted, setIsMuted] = useState(false);
   const os = useDeviceOS();
+
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
-    if (audioRef) {
-      setVolume(newVolume);
-      if (audioRef.current) {
-        audioRef.current.volume = newVolume;
-      }
+    setVolume(newVolume);
+    if (audioRef?.current) {
+      audioRef.current.volume = newVolume;
     }
   };
-
-  const toggleMute = () => {
-    const newMutedState = !isMuted;
-    setIsMuted(newMutedState);
-    if (audioRef) {
-      if (audioRef.current) {
-        audioRef.current.muted = newMutedState;
-      }
+  useEffect(() => {
+    if (audioRef && audioRef.current) {
+      audioRef.current.muted = isMuted;
     }
-  };
-
+  }, [isMuted, audioRef]);
   return (
-    <div className="sound-effect-control">
-      <h4>{effectName}</h4>
+    <div className="sound-effect-control flex items-center">
+      <h4 className="mt-0">{effectName}</h4>
       {os !== "iOS" && (
         <input
           type="range"
@@ -46,7 +45,9 @@ export const SoundEffectControl: FC<SoundEffectControlProps> = ({
           disabled={isMuted}
         />
       )}
-      <button onClick={toggleMute}>{isMuted ? "Unmute" : "Mute"}</button>
+      <Button isIconOnly size='sm' className='text-xl' onClick={onToggleMute}>
+        {isMuted ? <GoUnmute /> : <GoMute />}
+      </Button>
     </div>
   );
 };

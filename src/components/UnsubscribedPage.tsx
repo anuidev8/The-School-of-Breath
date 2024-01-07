@@ -1,6 +1,7 @@
 
 import Lottie from "lottie-react";
 import sleepicon from '../assets/sleep.json'
+import { Button } from "@nextui-org/react";
 
 export const UnsubscribedPage= () =>{
    
@@ -17,7 +18,7 @@ export const UnsubscribedPage= () =>{
             </div>
                <h1>Renewal Required for Yoga Subscription 🌙✨"</h1> 
                <p>Your yoga subscription has expired. Rekindle your wellness journey by renewing your subscription today.</p>
-               <button className="unsubscribed-button" onClick={onNavigate}>Payment"</button>
+               <Button className="unsubscribed-button" onClick={onNavigate}>Payment"</Button>
         </main>
     )
 }

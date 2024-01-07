@@ -2,14 +2,17 @@ import { Menu } from "./Navbar"
 
 interface LayoutProps {
     children:JSX.Element;
-    title:string;
+    navBarClassName?:string;
+    navBarChildren?: JSX.Element | JSX.Element[];
+    title?:string;
+    onBack?: () => void;
 
 }
 
-export const Layout = ({children,title}:LayoutProps) =>{
+export const Layout = ({children,title,navBarClassName,navBarChildren, onBack}:LayoutProps) =>{
     return(
-        <div>
-            <Menu title={title} />
+        <div className="h-screen">
+            <Menu title={title} navBarClassName={navBarClassName} children={navBarChildren}  onBack={ onBack} />
             {children}
         </div>
     )
