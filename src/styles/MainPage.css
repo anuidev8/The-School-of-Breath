@@ -280,16 +280,14 @@
 }
 
 .container-box .arrow {
-  position: absolute;
-  top: 50%;
-  margin-top: -5px;
+ 
   z-index: 0;
 }
 .container-box .arrow.arrow-left {
-  left: 5%;
+
 }
 .container-box .arrow.arrow-right {
-  right: 5%;
+  
 }
 
   

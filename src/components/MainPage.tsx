@@ -10,11 +10,14 @@ import { AudioControlModal } from "./Modal";
 import TimerModal from "./TimerModal";
 import { useNavigate } from "react-router-dom";
 import { menuList } from "../SleepMusic";
-import { FaPlay, FaStop} from "react-icons/fa";
-import { TbPlayerSkipForwardFilled ,TbPlayerSkipBackFilled} from "react-icons/tb";
+import { FaPlay, FaStop } from "react-icons/fa";
+import {
+  TbPlayerSkipForwardFilled,
+  TbPlayerSkipBackFilled,
+} from "react-icons/tb";
 
-import { AiOutlineControl} from "react-icons/ai";
-import { MdOutlineTimer} from "react-icons/md";
+import { AiOutlineControl } from "react-icons/ai";
+import { MdOutlineTimer } from "react-icons/md";
 import { Button, NavbarItem, useDisclosure } from "@nextui-org/react";
 import { Layout } from "./layout/Layout";
 const soundEffectListMap = [
@@ -71,23 +74,20 @@ const MainPage = () => {
   }, []); // Add more as needed
   const [isPlaying, setIsPlaying] = useState<boolean>();
 
-
-
-
-   useEffect(() => {
+  useEffect(() => {
     // Initialize soundEffectRefs
     soundEffectList.forEach((effect) => {
       soundEffectRefs.current.set(effect, createRef());
     });
-  }, []); 
+  }, []);
 
-     useEffect(() => {
+  useEffect(() => {
     if (audioRef.current && hasInteracted) {
       audioRef.current.src = getAudioSource(selectedBackground);
       audioRef.current.load();
       setIsPlaying(true);
     }
-  }, [selectedBackground, hasInteracted]); 
+  }, [selectedBackground, hasInteracted]);
 
   const onAudioLoad = () => {
     if (audioRef.current) {
@@ -189,9 +189,6 @@ const MainPage = () => {
     setIsPlaying(false);
   };
 
-
-
-
   const [initialSlideIndex, setInitialSlideIndex] = useState<null | number>(
     null
   ); // State to store initial slide index
@@ -211,53 +208,50 @@ const MainPage = () => {
     }
   }, [selectedBackground, backgrounds]);
 
- 
-
-
-
   const onNavigate = () => {
     history("/menu");
   };
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const {isOpen:isOpenTimer, onOpen:onOpenTimer, onOpenChange:onOpenChangeTimer} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isOpenTimer,
+    onOpen: onOpenTimer,
+    onOpenChange: onOpenChangeTimer,
+  } = useDisclosure();
 
   return (
     <Layout
-    onBack={onNavigate }
+      onBack={onNavigate}
       title="Home"
       navBarChildren={
         <>
-        <NavbarItem>
-          {" "}
-          <Button
-            onClick={onOpenTimer}
-            isIconOnly
-            className="text-2xl mr-2 bg-primary"
-            aria-label="back"
-            
-          >
-            <MdOutlineTimer />
-          </Button>
-          <Button
-          onClick={onOpen}
-            isIconOnly
-            className=" text-2xl bg-primary"
-            aria-label="back"
-          >
-            <AiOutlineControl />
-          </Button>
-        </NavbarItem>
-       
+          <NavbarItem>
+            {" "}
+            <Button
+              onClick={onOpenTimer}
+              isIconOnly
+              className="text-2xl mr-2 bg-primary"
+              aria-label="back"
+            >
+              <MdOutlineTimer />
+            </Button>
+            <Button
+              onClick={onOpen}
+              isIconOnly
+              className=" text-2xl bg-primary"
+              aria-label="back"
+            >
+              <AiOutlineControl />
+            </Button>
+          </NavbarItem>
         </>
       }
       navBarClassName={"bg-transparent"}
     >
       <div className="main-page">
-        <div style={{ position: "relative" }} className="">
+        <div className="pt-8">
           {initialSlideIndex !== null && (
             <Swiper
               initialSlide={initialSlideIndex}
-             
               breakpoints={{
                 // when window width is >= 320px
                 320: {
@@ -282,20 +276,18 @@ const MainPage = () => {
               {menuList.map((background, index) => (
                 <SwiperSlide
                   style={{
-                    height: "90vh",
+                    height: "50vh",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    flexDirection: "column",
                   }}
                   key={index + 1}
                 >
-                  <figure className="absolute top-28 flex justify-center m-0 bg-black">
-                    <img src={background.image} alt={background.name} />
+                  <figure className=" flex justify-center m-0 bg-black w-full ">
+                    <img className="object-contain w-80 h-80" src={background.image} alt={background.name} />
                   </figure>
-                  <div
-                    className="relative text-white font-bold text-xl mt-0"
-                   
-                  >
+                  <div className="relative text-white font-bold text-xl mt-0 -translate-y-8">
                     {background.name}
                   </div>
                 </SwiperSlide>
@@ -304,18 +296,14 @@ const MainPage = () => {
           )}
 
           <audio ref={audioRef} onLoadedData={onAudioLoad} />
-       
         </div>
 
-        <div
-        className="absolute top-2/4 flex justify-center text-white w-full"
-        >
+        <div className=" flex justify-center text-white w-full ">
           <Swiper
             freeMode={true}
             modules={[FreeMode]}
-            spaceBetween={0}
+            spaceBetween={10}
             slidesPerView={4}
-
           >
             {soundEffectList.map((effect, index) => (
               <SwiperSlide>
@@ -353,17 +341,13 @@ const MainPage = () => {
           />
         ))}
 
-     
-      
-          <AudioControlModal
-            onOpenChange={onOpenChange}
-            isOpen={isOpen}
-            audioRef={audioRef}
-            soundEffectRefs={activeRefs}
-          /> 
+        <AudioControlModal
+          onOpenChange={onOpenChange}
+          isOpen={isOpen}
+          audioRef={audioRef}
+          soundEffectRefs={activeRefs}
+        />
 
-    
-          
         <TimerModal
           onOpenChange={onOpenChangeTimer}
           isOpen={isOpenTimer}
@@ -379,27 +363,31 @@ const MainPage = () => {
         <FaStop />
       )}{" "}
     </button> */}
-    <div style={{
-      bottom:'12rem'
-    }} className="container-box absolute  w-full z-10">
-    <Button
-          isIconOnly
-          size="lg"
-          className=" rounded-full text-2xl bg-white/50"
-          variant="faded"
-          onClick={togglePlay}
-        >
-          {" "}
-          {!isPlaying ? <FaPlay /> : <FaStop />}{" "}
-        </Button>
-        <Button isIconOnly className="arrow-left arrow bg-transparent text-2xl">
-          <TbPlayerSkipBackFilled />
-        </Button>
-        <Button isIconOnly className="arrow-right arrow bg-transparent text-2xl">
-          <TbPlayerSkipForwardFilled />
-        </Button>
-    </div>
-       
+        <div className="container-box  w-full mt-24 flex justify-around">
+          <Button
+            isIconOnly
+            className="arrow-left arrow bg-transparent text-2xl"
+          >
+            <TbPlayerSkipBackFilled />
+          </Button>
+          <Button
+            isIconOnly
+            size="lg"
+            className=" rounded-full text-2xl bg-white/50"
+            variant="faded"
+            onClick={togglePlay}
+          >
+            {" "}
+            {!isPlaying ? <FaPlay /> : <FaStop />}{" "}
+          </Button>
+
+          <Button
+            isIconOnly
+            className="arrow-right arrow bg-transparent text-2xl"
+          >
+            <TbPlayerSkipForwardFilled />
+          </Button>
+        </div>
       </div>
     </Layout>
   );
