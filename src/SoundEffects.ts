@@ -2,7 +2,7 @@ export const soundEffectListMap = [
   {
     name: "Rain",
     imageUrl:
-      "https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702508479/audios/icons/1_ntd34p.png",
+      "images/.png",
     src: "https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702247988/audios/rain_oj61ra.mp3",
   },
   {
