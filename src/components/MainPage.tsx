@@ -20,7 +20,7 @@ import { AiOutlineControl } from "react-icons/ai";
 import { MdOutlineTimer } from "react-icons/md";
 import { Button, NavbarItem, useDisclosure } from "@nextui-org/react";
 import { Layout } from "./layout/Layout";
-const soundEffectListMap = [
+import { soundEffectListMap } from "../SoundEffects"; 
   {
     name: "Rain",
     imageUrl:
@@ -51,7 +51,7 @@ const soundEffectListMap = [
       "images/Thunder.png",
     src: "audios/thunder.mp3",
   },
-];
+
 
 const MainPage = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
