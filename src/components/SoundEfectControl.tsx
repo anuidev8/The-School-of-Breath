@@ -38,8 +38,8 @@ export const SoundEffectControl: FC<SoundEffectControlProps> = ({
         <input
           type="range"
           min="0"
-          max="1"
-          step="0.01"
+          max=".03"
+          step="0.005"
           value={volume}
           onChange={handleVolumeChange}
           disabled={isMuted}
