@@ -21,37 +21,6 @@ import { MdOutlineTimer } from "react-icons/md";
 import { Button, NavbarItem, useDisclosure } from "@nextui-org/react";
 import { Layout } from "./layout/Layout";
 import { soundEffectListMap } from "../SoundEffects"; 
-  {
-    name: "Rain",
-    imageUrl:
-      "images/rain.png",
-    src: "audios/rain.mp3",
-  },
-  {
-    name: "Crickets",
-    imageUrl:
-      "images/Crickets.png",
-    src: "audios/crickets.mp3",
-  },
-  {
-    name: "Fire",
-    imageUrl:
-      "images/Fire.png",
-    src: "audios/fire.mp3",
-  },
-  {
-    name: "Bell",
-    imageUrl:
-      "images/Wind.png",
-    src: "audios/wind.mp3",
-  },
-  {
-    name: "Thunder",
-    imageUrl:
-      "images/Thunder.png",
-    src: "audios/thunder.mp3",
-  },
-
 
 const MainPage = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
