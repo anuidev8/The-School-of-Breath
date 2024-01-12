@@ -51,7 +51,6 @@ const soundEffectListMap = [
       "images/thunder.png",
     src: "audios/thunder..mp3",
   },
-];
   {
     name: "Thunder",
     imageUrl:
