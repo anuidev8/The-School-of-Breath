@@ -3,7 +3,7 @@ export const soundEffectListMap = [
     name: "Rain",
     imageUrl:
       "images/rain.png",
-    src: "audios/rain.mp3",
+    src: "audios/rain1.mp3",
   },
   {
     name: "Crickets",
