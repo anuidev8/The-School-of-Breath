@@ -8,25 +8,25 @@ export const soundEffectListMap = [
   {
     name: "Crickets",
     imageUrl:
-      "images/crickets.png",
+      "images/Crickets.png",
     src: "audios/crickets.mp3",
   },
   {
     name: "Fire",
     imageUrl:
-      "images/fire.png",
-    src: "audios/fire.mp3",
+      "images/Fire.png",
+    src: "audios/Fire.mp3",
   },
   {
     name: "Bell",
     imageUrl:
       "images/wind.png",
-    src: "audios/wind.mp3",
+    src: "audios/Wind.mp3",
   },
   {
     name: "Thunder",
     imageUrl:
       "images/thunder.png",
-    src: "audios/thunder.mp3",
+    src: "audios/Thunder.mp3",
   },
 ];
