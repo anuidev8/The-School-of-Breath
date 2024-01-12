@@ -15,18 +15,18 @@ export const soundEffectListMap = [
     name: "Fire",
     imageUrl:
       "images/fire.png",
-    src: "audios/fire..mp3",
+    src: "audios/fire.mp3",
   },
   {
     name: "Bell",
     imageUrl:
       "images/wind.png",
-    src: "audios/wind..mp3",
+    src: "audios/wind.mp3",
   },
   {
     name: "Thunder",
     imageUrl:
       "images/thunder.png",
-    src: "audios/thunder..mp3",
+    src: "audios/thunder.mp3",
   },
 ];
