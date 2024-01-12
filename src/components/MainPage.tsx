@@ -30,32 +30,26 @@ const soundEffectListMap = [
   {
     name: "Crickets",
     imageUrl:
-      "images/crickets.png",
+      "images/Crickets.png",
     src: "audios/crickets.mp3",
   },
   {
     name: "Fire",
     imageUrl:
-      "images/fire.png",
+      "images/Fire.png",
     src: "audios/fire..mp3",
   },
   {
     name: "Bell",
     imageUrl:
-      "images/wind.png",
+      "images/Wind.png",
     src: "audios/wind..mp3",
   },
   {
     name: "Thunder",
     imageUrl:
-      "images/thunder.png",
+      "images/Thunder.png",
     src: "audios/thunder..mp3",
-  },
-  {
-    name: "Thunder",
-    imageUrl:
-      "https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702539337/audios/icons/3_a1etkv.png",
-    src: "https://res.cloudinary.com/dnmjmjdsj/video/upload/v1702540826/audios/icons/thunder-25689_r1bdzg.mp3",
   },
 ];
 
