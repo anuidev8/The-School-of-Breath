@@ -16,8 +16,8 @@ export const UnsubscribedPage= () =>{
             <Lottie color="yellow"  animationData={sleepicon} loop={true} />
 
             </div>
-               <h1>Renewal Required for MusicApp Subscription 🌙✨"</h1> 
-               <p>Your MusicApp subscription has expired. Rekindle your wellness journey by renewing your subscription today.</p>
+               <h1>"Renew Your Journey of Tranquility 🌙✨"</h1> 
+               <p>Your MusicApp subscription has expired. Continue your journey with uninterrupted, soul-soothing music.</p>
                <Button className="unsubscribed-button" onClick={onNavigate}>Payment"</Button>
         </main>
     )
