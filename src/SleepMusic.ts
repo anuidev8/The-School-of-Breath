@@ -32,7 +32,7 @@ export const menuList = [
     name:'Sleep Soundly with Full Body Healing',
     image:'images/MWAA0043_1_zo2idb.png',
     audio:'audios/MWAA0043_1_zo2idb.mp3',
-    description:'Sleep Soundly with Full Body Healing with 528 Hz'
+    description:'Sleep Soundly with Full Body Healing 528 Hz'
   },
   {
     id:6,
