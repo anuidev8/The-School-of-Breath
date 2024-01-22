@@ -18,7 +18,7 @@ export const UnsubscribedPage= () =>{
             </div>
                <h1>"Renew Your Journey of Tranquility 🌙✨"</h1> 
                <p>Your MusicApp subscription has expired. Continue your journey with uninterrupted, soul-soothing music.</p>
-               <Button className="unsubscribed-button" onClick={onNavigate}>Payment"</Button>
+               <Button className="unsubscribed-button" onClick={onNavigate}>Payment</Button>
         </main>
     )
 }
