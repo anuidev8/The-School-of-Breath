@@ -69,4 +69,11 @@ export const menuList = [
     audio:'audios/MWAA0085.mp3',
     description:'Deep Healing Sleep Music ☯ BLACK SCREEN SLEEP MUSIC'
   },
+  {
+    id:11,
+    name:'SLEEP INSTANTLY with 432 Hz',
+    image:'images/MWAA0084.png',
+    audio:'audios/MWAA0084.mp3',
+    description:'SLEEP INSTANTLY with 432 Hz'
+  },
 ]
