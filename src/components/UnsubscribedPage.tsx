@@ -8,7 +8,7 @@ export const UnsubscribedPage= () =>{
 
     const onNavigate = () => {
         localStorage.clear()
-       window.location.href = 'https://www.meditatewithabhi.com/sleep-membership'
+       window.location.href = 'https://www.meditatewithabhi.com/order-app'
     }
     return(
         <main className="welcome-page unsubscribe-page">
