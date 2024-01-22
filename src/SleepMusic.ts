@@ -4,7 +4,7 @@ export const menuList = [
     name:'ANXIETY RELIEF SLEEP MUSIC 396 Hz',
     image:'images/MWAA0015_and0v7.png',
     audio:'audios/MWAA0015_and0v7.mp3',
-    description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz | Sleep Aid'
+    description:'ANXIETY RELIEF - SLEEP MUSIC | 396 Hz'
   },
   {
     id:2,
@@ -32,7 +32,7 @@ export const menuList = [
     name:'Sleep Soundly with Full Body Healing',
     image:'images/MWAA0043_1_zo2idb.png',
     audio:'audios/MWAA0043_1_zo2idb.mp3',
-    description:'Sleep Soundly with Full Body Healing | Sleep Music with 528 Hz'
+    description:'Sleep Soundly with Full Body Healing with 528 Hz'
   },
   {
     id:6,
