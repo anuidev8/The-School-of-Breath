@@ -16,7 +16,7 @@ export const UnsubscribedPage= () =>{
             <Lottie color="yellow"  animationData={sleepicon} loop={true} />
 
             </div>
-               <h1>"Renew Your Journey of Tranquility 🌙✨"</h1> 
+               <h1>Renew Your Journey of Tranquility 🌙✨</h1> 
                <p>Your MusicApp subscription has expired. Continue your journey with uninterrupted, soul-soothing music.
                <Button className="unsubscribed-button" onClick={onNavigate}>Renew Now!</Button></p>
         </main>
