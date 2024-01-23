@@ -10,9 +10,10 @@ import {
   CardHeader,
   Divider,
   Chip,
+  Link,
 } from "@nextui-org/react";
 import { MdArrowBack } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaWind } from "react-icons/fa";
 
 import { getPersistData } from "../../utils/localstore";
 import { filterByName } from "../../routes/SubscriptionAuth";
@@ -23,24 +24,22 @@ interface MenuProps {
   onBack?: () => void;
 }
 
-function getPromotionCountdown(promotionDays:number) {
+function getPromotionCountdown(promotionDays: number) {
   const maxDays = 7;
   return maxDays - promotionDays;
 }
 
-
 export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  
 
   const user = getPersistData("user");
-  const userFromSystemeIo = getPersistData('userFromSystemeIo')
+  const userFromSystemeIo = getPersistData("userFromSystemeIo");
 
   const userInfo = user ?? false;
-  const onLogout = () =>{
-    localStorage.clear()
-    window.location.href = '/login' 
-  }
+  const onLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
   return (
     <Navbar
       className={`relative  bg-main fixed top-0 w-full left-0  ${navBarClassName}`}
@@ -64,7 +63,7 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
         <NavbarItem className="flex-1">
           <h1 className="text-xl font-medium text-center">{title}</h1>
         </NavbarItem>
-       {children && children}
+        {children && children}
         <Button isIconOnly color="primary" aria-label="back">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -81,62 +80,99 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
                   <FaUserCircle />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="text-md"> hi ,{userInfo.fullName}</h3>
+                  <h3 className="text-md text-center">
+                    {" "}
+                    hi ,{userInfo.fullName}
+                  </h3>
                   <p className="text-small text-default-500">
                     {userInfo.email}
                   </p>
                 </div>
-                {
-                  
-                  !userFromSystemeIo &&
-                <div>
-                  {
-                    userInfo.promotionDays < 8 ?
+                {!userFromSystemeIo && (
+                  <div>
+                    {userInfo.promotionDays < 8 ? (
+                      <>
+                        <Chip color="success">Subscribed</Chip>
+                        <p className="text-base">
+                          {userInfo &&
+                            `you've ${getPromotionCountdown(
+                              userInfo.promotionDays
+                            )} days free`}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <Chip color="warning">unsubscribed</Chip>
+                        <p className="text-base">
+                          "your subscription is expired"
+                        </p>
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {userFromSystemeIo &&
+                  userInfo.promotionDays < 8 &&
+                  !filterByName(
+                    userFromSystemeIo.tags,
+                    "Enrolled_to_Membership"
+                  ) && (
                     <>
-                    <Chip color="success">Subscribed</Chip>
-                  <p className="text-base">{userInfo &&  `you've ${getPromotionCountdown(userInfo.promotionDays)} days free`}</p>
+                      <Chip color="success">Subscribed</Chip>
+                      <p className="text-base">
+                        {userInfo &&
+                          `you've ${getPromotionCountdown(
+                            userInfo.promotionDays
+                          )} days free`}
+                      </p>
                     </>
-                    :  <>
-                    <Chip color="warning">unsubscribed</Chip>
-                  <p className="text-base">"your subscription is expired"</p>
+                  )}
+                {userFromSystemeIo &&
+                  userInfo.promotionDays < 8 &&
+                  filterByName(
+                    userFromSystemeIo.tags,
+                    "Enrolled_to_Membership"
+                  ) && (
+                    <>
+                      <Chip color="success">Subscribed</Chip>
+                      <p className="text-base">
+                        {userInfo && `Monthly subscription`}
+                      </p>
                     </>
-                  }
-                  
-                </div>
-                }
-                
-                {
-                  userFromSystemeIo &&  userInfo.promotionDays < 8 && !filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership') &&
-                  <>
-                    <Chip color="success">Subscribed</Chip>
-                  <p className="text-base">{userInfo &&  `you've ${getPromotionCountdown(userInfo.promotionDays)} days free`}</p>
+                  )}
+                {userFromSystemeIo &&
+                  userInfo.promotionDays > 7 &&
+                  filterByName(
+                    userFromSystemeIo.tags,
+                    "Enrolled_to_Membership"
+                  ) && (
+                    <>
+                      <Chip color="success">
+                        {" "}
+                        {userInfo && `Monthly subscription`}
+                      </Chip>
                     </>
-                    
-                }
-                {
-                  userFromSystemeIo &&  userInfo.promotionDays < 8 && filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership') &&
-                  <>
-                    <Chip color="success">Subscribed</Chip>
-                  <p className="text-base">{userInfo &&  `Monthly subscription`}</p>
-                    </>
-                    
-                }
-                {
-                  userFromSystemeIo &&  userInfo.promotionDays > 7 && filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership') &&
-                  <>
-                    <Chip color="success">Subscribed</Chip>
-                  <p className="text-base">{userInfo &&  `Monthly subscription`}</p>
-                    </>
-                    
-                }
-
-
-               
+                  )}
               </CardHeader>
               <Divider />
             </Card>
           )}
-           <Button color="danger" onClick={onLogout} className="mt-5">Logout</Button>
+          <Button color="danger" onClick={onLogout} className="mt-5">
+            Logout
+          </Button>
+          {!userFromSystemeIo && userInfo.promotionDays < 8 && (
+            <Button color="primary" onClick={onLogout} className="mt-5">
+              <Link
+                className="text-white"
+                href="https://www.meditatewithabhi.com/order-app"
+              >
+                Renew Now!{" "}
+                <i className="ml-2">
+                  <FaWind />
+                </i>
+              </Link>
+            </Button>
+          )}
         </NavbarItem>
       </NavbarMenu>
     </Navbar>

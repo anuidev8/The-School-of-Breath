@@ -24,6 +24,9 @@ export const SubscriptionAuth = () =>{
     if(userActiveFromSystemeIo  && !filterByName(tags,'Enrolled_to_Membership') && useRFromDb.promotionDays > 7 ){
         return <Navigate to={'/unsubscribed'} />
     }
+    if(!userActiveFromSystemeIo && useRFromDb?.promotionDays > 7 ){
+        return <Navigate to={'/unsubscribed'} />
+    }
    
     if(!isStartSubscription){
         return <Navigate to={'/'} />
