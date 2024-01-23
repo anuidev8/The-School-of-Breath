@@ -97,31 +97,40 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
                   <p className="text-base">{userInfo &&  `you've ${getPromotionCountdown(userInfo.promotionDays)} days free`}</p>
                     </>
                     :  <>
-                    <Chip color="warning">Subscribed</Chip>
+                    <Chip color="warning">unsubscribed</Chip>
                   <p className="text-base">"your subscription is expired"</p>
                     </>
                   }
                   
                 </div>
+                }
+                
+                {
+                  userFromSystemeIo &&  userInfo.promotionDays < 8 && !filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership') &&
+                  <>
+                    <Chip color="success">Subscribed</Chip>
+                  <p className="text-base">{userInfo &&  `you've ${getPromotionCountdown(userInfo.promotionDays)} days free`}</p>
+                    </>
+                    
+                }
+                {
+                  userFromSystemeIo &&  userInfo.promotionDays < 8 && filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership') &&
+                  <>
+                    <Chip color="success">Subscribed</Chip>
+                  <p className="text-base">{userInfo &&  `Monthly subscription`}</p>
+                    </>
+                    
+                }
+                {
+                  userFromSystemeIo &&  userInfo.promotionDays > 7 && filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership') &&
+                  <>
+                    <Chip color="success">Subscribed</Chip>
+                  <p className="text-base">{userInfo &&  `Monthly subscription`}</p>
+                    </>
+                    
                 }
 
-{
-                  
-                  userFromSystemeIo &&
-                <div>
-                  {
-                    !userFromSystemeIo.unsubscribed && filterByName(userFromSystemeIo.tags,'Enrolled_to_Membership')?
-                    <>
-                    <Chip color="success">Subscribed per months</Chip>
-                    </>
-                    :  <>
-                    <Chip color="warning">Subscribed</Chip>
-                  <p className="text-base">"your subscription is expired"</p>
-                    </>
-                  }
-                  
-                </div>
-                }
+
                
               </CardHeader>
               <Divider />
