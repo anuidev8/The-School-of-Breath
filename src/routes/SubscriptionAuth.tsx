@@ -21,19 +21,22 @@ export const SubscriptionAuth = () =>{
     const userActive = userFromSystemeIo ?? false
      
     const tags = userActive.tags
-    
     if(userActive && userActive.unsubscribed && !filterByName(tags,'Enrolled_to_Membership') ){
         return <Navigate to={'/unsubscribed'} />
     }
+   
      if(userActive && !filterByName(tags,'Enrolled_to_Membership') ){
         return <Navigate to={'/unsubscribed'} />
     } 
     if(userActive && userActive.unsubscribed ){
         return <Navigate to={'/unsubscribed'} />
     } 
-   if(useRFromDb && useRFromDb.promotionDays > 7){
+   
+    
+   if(useRFromDb && useRFromDb.promotionDays > 7 && !filterByName(tags,'Enrolled_to_Membership')  ){
         return <Navigate to={'/unsubscribed'} />
     } 
+    
   
   
     
