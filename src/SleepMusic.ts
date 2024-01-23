@@ -76,4 +76,10 @@ export const menuList = [
     audio:'audios/MWAA0084.mp3',
     description:'SLEEP INSTANTLY with 432 Hz'
   },
+    id:12,
+    name:'Yoga Nidra 1 : Sleep meditation before bed!',
+    image:'images/YogaNidra1.png',
+    audio:'audios/YogaNidra1.mp3',
+    description:'Yoga Nidra 1 : Sleep meditation before bed!'
+  
 ]
