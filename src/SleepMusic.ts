@@ -83,4 +83,11 @@ export const menuList = [
     audio:'audios/YogaNidra1.mp3',
     description:'Yoga Nidra 1 : Sleep meditation before bed!'
   },
+  {
+    id:13,
+    name:'Yoga Nidra 2 : Sleep meditation before bed!',
+    image:'images/Yoga Nidra2.png',
+    audio:'audios/Yoga Nidra2.mp3',
+    description:'Yoga Nidra 2 : Sleep meditation before bed!'
+  },
 ]
