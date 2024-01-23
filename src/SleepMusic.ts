@@ -90,4 +90,11 @@ export const menuList = [
     audio:'audios/Yoga Nidra2.mp3',
     description:'Yoga Nidra 2 : Sleep meditation before bed!'
   },
+  {
+    id:14,
+    name:'TRATAKA ☯ 10 Min Guided Meditation for Anxiety & Insomnia',
+    image:'images/Yoga Nidra2.png',
+    audio:'audios/Yoga Nidra2.mp3',
+    description:'TRATAKA : Candle Meditation ☯ Anxiety & Insomnia '
+  },
 ]
