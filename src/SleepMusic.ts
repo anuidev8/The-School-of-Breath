@@ -93,8 +93,8 @@ export const menuList = [
   {
     id:14,
     name:'TRATAKA ☯ 10 Min Guided Meditation for Anxiety & Insomnia',
-    image:'images/Yoga Nidra2.png',
-    audio:'audios/Yoga Nidra2.mp3',
+    image:'images/Trataka.png',
+    audio:'audios/Trataka.mp3',
     description:'TRATAKA : Candle Meditation ☯ Anxiety & Insomnia '
   },
 ]
