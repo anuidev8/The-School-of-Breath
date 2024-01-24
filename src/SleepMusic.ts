@@ -97,4 +97,11 @@ export const menuList = [
     audio:'audios/Trataka.mp3',
     description:'TRATAKA : Candle Meditation ☯ Anxiety & Insomnia '
   },
+  {
+    id:15,
+    name:'Sleep Music Deep Sleep',
+    image:'images/MWA00133.png',
+    audio:'audios/MWA00133.mp3',
+    description:'Sleep Music Deep Sleep ☯ All 9 Solfeggio Frequencies '
+  },
 ]
