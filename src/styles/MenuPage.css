@@ -7,10 +7,17 @@
     border: none;
     z-index: 102;
 }
+.like-button-m{
+
+  background:none;
+  color: #f6bb0b;
+  border: none;
+  z-index: 102;
+}
 
 .menu-page{
   
-    padding: 0 2rem;
+   
     padding-top: 3rem;
   background-image: url(https://res.cloudinary.com/dnmjmjdsj/image/upload/v1703005944/image/bg-card_stk9jw.png);  
     background-repeat: no-repeat;
@@ -66,25 +73,17 @@
     font-weight: medium;
     height: 100%;
     width: 100%;
-    z-index: 100;
+ 
     background-color: none;
     background: none;
     border: none;
     color: white;
     padding: 0;
+    overflow: hidden;
 
   }
 
-  .music-option p{
-    color: white;
-    text-align: left;
-    font-size: .9rem;
-  background-color: rgba(210, 210, 240, 0.206); 
-
-    margin: 0;
-    padding: .8rem;
-    
-  }
+ 
 
   .music-option img{
     object-fit: contain;
@@ -104,11 +103,22 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: .5rem;
-    overflow: hidden;
+   
     filter: contrast(-40%);
 
    
    
+  }
+  .music-item-p{
+    color: white;
+    text-align: left;
+    font-size: .9rem;
+  background-color: rgba(210, 210, 240, 0.206); 
+
+    margin: 0;
+    padding: .8rem;
+    z-index: 100;
+    
   }
   .music-list-audio h3{
     color: white;

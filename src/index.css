@@ -55,4 +55,15 @@ button:focus-visible {
   }
 }
 
+.appear {
+  opacity: 0;
+  animation: appear .5s ease both;
+}
+
+@keyframes appear {
+  to{
+    opacity: 1;
+  }
+}
+
  

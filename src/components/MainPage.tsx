@@ -9,7 +9,6 @@ import "../styles/MainPage.css";
 import { AudioControlModal } from "./Modal";
 import TimerModal from "./TimerModal";
 import { useNavigate } from "react-router-dom";
-import { menuList } from "../SleepMusic";
 import { FaPlay, FaStop } from "react-icons/fa";
 import {
   TbPlayerSkipForwardFilled,
@@ -20,13 +19,22 @@ import { AiOutlineControl } from "react-icons/ai";
 import { MdOutlineTimer } from "react-icons/md";
 import { Button, NavbarItem, useDisclosure } from "@nextui-org/react";
 import { Layout } from "./layout/Layout";
-import { soundEffectListMap } from "../SoundEffects"; 
-
+import { soundEffectListMap } from "../SoundEffects";
+import { Music } from "../types/music";
+import { useQuery } from "@tanstack/react-query";
+import musicApi from "../services/music.api";
+import { CardLoader } from "./feedbacks/CardLoader";
+import LikeButton from "./menu/LikeButton";
+import useToggleFavorite from "../hooks/useToggleFavorite";
+import { urlApi } from "../utils/api";
+import { getPersistData } from "../utils/localstore";
+import Lottie from "lottie-react";
+import LikeIcon from  '../assets/animation.json'
 const MainPage = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isAudioLoading, setIsAudioLoading] = useState(true);
   /* const [resetSignal, setResetSignal] = useState(false); */
   const history = useNavigate();
-  //const soundEffectAudioRef = useRef<HTMLAudioElement>(null);
   const {
     selectedBackground,
     selectBackground,
@@ -36,13 +44,39 @@ const MainPage = () => {
     handleUserInteraction,
   } = useBackground();
 
+  const getCategory = localStorage.getItem("categorySelected") ?? "";
+ 
+
+  const {
+    data: menuList,
+    isLoading,
+    error,
+    refetch,
+  } = useQuery<Music[]>({
+    queryKey: ["musicbycategory", getCategory],
+    queryFn: async () => musicApi.getMusicByCategory({ category: getCategory }),refetchOnWindowFocus:false
+  });
+
+  //const soundEffectAudioRef = useRef<HTMLAudioElement>(null);
+
   const soundEffectRefs = useRef(new Map());
 
   const soundEffectList = useMemo(() => {
     return soundEffectListMap.map((item) => item.name);
   }, []); // Add more as needed
   const [isPlaying, setIsPlaying] = useState<boolean>();
+  useEffect(() => {
 
+    if (audioRef.current && hasInteracted) {
+      audioRef.current.src = getAudioSource(
+        selectedBackground?.audioFilename ?? ""
+      );
+     
+      
+      audioRef.current.load();
+      setIsPlaying(true);
+    }
+  }, [selectedBackground, hasInteracted,menuList]);
   useEffect(() => {
     // Initialize soundEffectRefs
     soundEffectList.forEach((effect) => {
@@ -50,31 +84,28 @@ const MainPage = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (audioRef.current && hasInteracted) {
-      audioRef.current.src = getAudioSource(selectedBackground);
-      audioRef.current.load();
-      setIsPlaying(true);
-    }
-  }, [selectedBackground, hasInteracted]);
+  // Loading main audio
+  const onAudioLoadStart = () => {
+    setIsAudioLoading(true);
+  };
+ 
 
   const onAudioLoad = () => {
+    setIsAudioLoading(false);
     if (audioRef.current) {
       audioRef.current
         .play()
         .catch((error) => console.error("Error playing audio:", error));
     }
   };
-  const getAudioSource = (background: string) => {
-    const findAudioName =
-      menuList.find((item) => item.name === background)?.audio ?? "";
-
+  const getAudioSource = (music: string) => {
+    const findAudioName = `${urlApi}/uploadFiles/file/${music}`;
     return findAudioName;
   };
 
   const backgrounds = useMemo(() => {
-    return menuList.map((item) => item.name);
-  }, []); // Add more backgrounds as needed
+    return menuList?.map((item: Music) => item.name) ?? [];
+  }, [menuList]); // Add more backgrounds as needed
 
   const handleSlideChange = (swiper: SwiperClass) => {
     const newBackground = backgrounds[swiper.activeIndex];
@@ -85,7 +116,10 @@ const MainPage = () => {
         }
       });
     }
-    selectBackground(newBackground);
+
+    const findingMusic =
+      menuList?.find((item) => item.name === newBackground) ?? null;
+    findingMusic && selectBackground(findingMusic);
   };
 
   const handleSelectSoundEffect = (effect: string) => {
@@ -167,13 +201,13 @@ const MainPage = () => {
   useEffect(() => {
     // Find the index of the selected background
 
-    const index = backgrounds.findIndex(
-      (bg) => bg === localStorage.getItem("selectedBackground")
+    const index = backgrounds?.findIndex(
+      (bg) => bg === selectedBackground?.name
     );
 
     // Update the initial slide index
     if (index !== -1) {
-      setInitialSlideIndex(index);
+      setInitialSlideIndex(index ?? null);
     }
   }, [selectedBackground, backgrounds]);
 
@@ -186,6 +220,20 @@ const MainPage = () => {
     onOpen: onOpenTimer,
     onOpenChange: onOpenChangeTimer,
   } = useDisclosure();
+
+  const { toggleFavorite, isMutating } = useToggleFavorite(urlApi, refetch);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>An error has occurred: {error.message}</div>;
+  if (menuList?.length === 0) return <div>No categories available.</div>;
+
+
+
+  const user = getPersistData("user") ?? null;
+
+  const isFavorite = (favorites: string[]) => {
+    return favorites?.includes(user.id) ?? false;
+  };
 
   return (
     <Layout
@@ -217,146 +265,174 @@ const MainPage = () => {
       navBarClassName={"bg-transparent"}
     >
       <div className="main-page">
-        <div className="pt-8">
-          {initialSlideIndex !== null && (
-            <Swiper
-              initialSlide={initialSlideIndex}
-              breakpoints={{
-                // when window width is >= 320px
-                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 20,
-                },
-                // when window width is >= 480px
-                480: {
-                  slidesPerView: 2,
-                  spaceBetween: 30,
-                },
-                // when window width is >= 640px
-                640: {
-                  slidesPerView: 3,
-                  spaceBetween: 40,
-                },
-              }}
-              navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
-              modules={[Navigation]}
-              onSlideChange={handleSlideChange}
-            >
-              {menuList.map((background, index) => (
-                <SwiperSlide
-                  style={{
-                    height: "50vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flexDirection: "column",
+      <audio
+     
+          ref={audioRef}
+          onLoadedData={onAudioLoad}
+          onLoadStart={onAudioLoadStart}
+        />
+        {isAudioLoading && (
+          <div className="h-screen flex justify-center items-center">
+            <CardLoader />
+          </div>
+        )}
+        {!isAudioLoading && (
+          <>
+            <div className="pt-8 your-horizontal-scroll-container appear">
+              {initialSlideIndex !== null && (
+                <Swiper
+                  initialSlide={initialSlideIndex}
+                  breakpoints={{
+                    // when window width is >= 320px
+                    320: {
+                      slidesPerView: 1,
+                      spaceBetween: 20,
+                    },
+                    // when window width is >= 480px
+                    480: {
+                      slidesPerView: 2,
+                      spaceBetween: 30,
+                    },
+                    // when window width is >= 640px
+                    640: {
+                      slidesPerView: 3,
+                      spaceBetween: 40,
+                    },
                   }}
-                  key={index + 1}
+                  navigation={{ nextEl: ".arrow-right", prevEl: ".arrow-left" }}
+                  modules={[Navigation]}
+                  onSlideChange={handleSlideChange}
                 >
-                  <figure className=" flex justify-center m-0 bg-black w-full ">
-                    <img className="object-contain w-80 h-80" src={background.image} alt={background.name} />
-                  </figure>
-                  <div className="relative text-white font-bold text-xl mt-0 -translate-y-8">
-                    {background.name}
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
+                  {menuList &&
+                    menuList.map((background, index) => (
+                      <SwiperSlide
+                        style={{
+                          height: "50vh",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                        }}
+                        key={index + 1}
+                      >
+                        <figure className=" flex justify-center m-0 bg-black w-full ">
+                          <img
+                            className="object-contain w-80 h-80"
+                            src={`${urlApi}/uploadFiles/file/${background.imageFilename}`}
+                            loading="lazy"
+                            alt={background.name}
+                          />
+                        </figure>
+                        {
+                          isMutating &&
+                           <div className="translate-y-0 ">
+                           <Lottie className="-translate-y-10 translate-x-5" animationData={LikeIcon} loop={true}   />
+                       </div>
+                        }
+                        {!isMutating && (
+                          <div className="relative">
+                          <LikeButton
+                          className="like-button-m translate-y-12"
+                            onToggle={() => toggleFavorite(background.id)}
+                            isFavorite={isFavorite(background.favorites)}
+                          />
+                          </div>
+                        )}
+                        <div></div>
+                        <div className="relative text-white font-bold text-xl mt-0 -translate-y-8">
+                          {background.name}
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                </Swiper>
+              )}
+            </div>
 
-          <audio ref={audioRef} onLoadedData={onAudioLoad} />
-        </div>
-
-        <div className=" flex justify-center text-white w-full ">
-          <Swiper
-            freeMode={true}
-            modules={[FreeMode]}
-            spaceBetween={10}
-            slidesPerView={4}
-          >
-            {soundEffectList.map((effect, index) => (
-              <SwiperSlide>
-                <Button
-                  className={`flex justify-center  items-center flex-col  bg-white/10 h-28 ${
-                    isActiveEffect(effect) ? "bg-primary/30" : ""
-                  }`}
-                  key={index}
-                  onClick={() => handleSelectSoundEffect(effect)}
-                >
-                  <figure className="m-0 ">
-                    <img
-                      width={65}
-                      height={65}
-                      src={
-                        soundEffectListMap.find((item) => item.name === effect)
-                          ?.imageUrl ??
-                        "https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702508479/audios/icons/1_ntd34p.png"
-                      }
-                    />
-                  </figure>
-                  <div>{effect}</div>
-                </Button>
-              </SwiperSlide>
+            <div className=" flex justify-center text-white w-full appear">
+              <Swiper
+                freeMode={true}
+                modules={[FreeMode]}
+                spaceBetween={10}
+                slidesPerView={4}
+              >
+                {soundEffectList.map((effect, index) => (
+                  <SwiperSlide  key={index}>
+                    <Button
+                      className={`flex justify-center  items-center flex-col  bg-white/10 h-28 ${
+                        isActiveEffect(effect) ? "bg-primary/30" : ""
+                      }`}
+                     
+                      onClick={() => handleSelectSoundEffect(effect)}
+                    >
+                      <figure className="m-0 ">
+                        <img
+                          width={65}
+                          height={65}
+                          src={
+                            soundEffectListMap.find(
+                              (item) => item.name === effect
+                            )?.imageUrl ??
+                            "https://res.cloudinary.com/dnmjmjdsj/image/upload/v1702508479/audios/icons/1_ntd34p.png"
+                          }
+                        />
+                      </figure>
+                      <div>{effect}</div>
+                    </Button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+            {Array.from(activeSoundEffects).map((effect, index) => (
+              <audio
+                key={index}
+                ref={soundEffectRefs.current.get(effect)}
+                src={getSoundEffectSource(`${effect}`)}
+                autoPlay
+                loop
+              />
             ))}
-          </Swiper>
-        </div>
-        {Array.from(activeSoundEffects).map((effect, index) => (
-          <audio
-            key={index}
-            ref={soundEffectRefs.current.get(effect)}
-            src={getSoundEffectSource(`${effect}`)}
-            autoPlay
-            loop
-          />
-        ))}
 
-        <AudioControlModal
-          onOpenChange={onOpenChange}
-          isOpen={isOpen}
-          audioRef={audioRef}
-          soundEffectRefs={activeRefs}
-        />
+            <AudioControlModal
+              onOpenChange={onOpenChange}
+              isOpen={isOpen}
+              audioRef={audioRef}
+              soundEffectRefs={activeRefs}
+            />
 
-        <TimerModal
-          onOpenChange={onOpenChangeTimer}
-          isOpen={isOpenTimer}
-          onTimerEnd={handleTimerEnd}
-        />
+            <TimerModal
+              onOpenChange={onOpenChangeTimer}
+              isOpen={isOpenTimer}
+              onTimerEnd={handleTimerEnd}
+            />
 
-        {/*  <button className="control play" onClick={togglePlay}>
-      {" "}
-      {!isPlaying ? (
-       
-       <FaPlay />
-      ) : (
-        <FaStop />
-      )}{" "}
-    </button> */}
-        <div className="container-box  w-full mt-24 flex justify-around">
-          <Button
-            isIconOnly
-            className="arrow-left arrow bg-transparent text-2xl"
-          >
-            <TbPlayerSkipBackFilled />
-          </Button>
-          <Button
-            isIconOnly
-            size="lg"
-            className=" rounded-full text-2xl bg-white/50"
-            variant="faded"
-            onClick={togglePlay}
-          >
-            {" "}
-            {!isPlaying ? <FaPlay /> : <FaStop />}{" "}
-          </Button>
+            <div className="container-box  w-full mt-24 flex justify-around appear">
+              <Button
+                isIconOnly
+                className="arrow-left arrow bg-transparent text-2xl"
+              >
+                <TbPlayerSkipBackFilled />
+              </Button>
+              <Button
+                isIconOnly
+                size="lg"
+                className=" rounded-full text-2xl bg-white/50"
+                variant="faded"
+                onClick={togglePlay}
+              >
+                {" "}
+                {!isPlaying ? <FaPlay /> : <FaStop />}{" "}
+              </Button>
 
-          <Button
-            isIconOnly
-            className="arrow-right arrow bg-transparent text-2xl"
-          >
-            <TbPlayerSkipForwardFilled />
-          </Button>
-        </div>
+              <Button
+                isIconOnly
+                className="arrow-right arrow bg-transparent text-2xl"
+              >
+                <TbPlayerSkipForwardFilled />
+              </Button>
+            </div>
+          </>
+        )}
+    
       </div>
     </Layout>
   );

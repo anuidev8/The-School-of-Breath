@@ -15,6 +15,8 @@ const PrivateValidationFragment = <Outlet />
 export const AuthGuard = ({privateValidation}:Props) =>{
     const {isAuthenticated} = useContext(AuthContext)
     const token = getPersistData('authorization') ?? null
+
+    
     const { data,isLoading} = useQuery({ queryKey: ['user'], queryFn:async ()=> getUser({token:token?? ''}),enabled:!!token })
      
     if(isLoading){
