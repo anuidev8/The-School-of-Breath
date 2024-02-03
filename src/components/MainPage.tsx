@@ -54,7 +54,7 @@ const MainPage = () => {
     if (audioRef.current && hasInteracted) {
       audioRef.current.src = getAudioSource(selectedBackground);
       audioRef.current.load();
-      audioRef.current.loop = true;  // Ensure the audio loops
+      audioRef.current.loop = true; // Ensure the audio loops
       setIsPlaying(true);
     }
   }, [selectedBackground, hasInteracted]);
