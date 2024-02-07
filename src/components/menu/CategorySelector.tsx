@@ -31,10 +31,7 @@ export const CategorySelector: FC<{
       slidesPerView={4}
        
       >
-       
-        <SwiperSlide>
-          <Button className={`${categorySelected === '' || categorySelected === " " ? 'bg-primary': 'bg-warning/90'}`} onClick={() => onSelectCategory(" ")}>All</Button>
-        </SwiperSlide>
+    
         <SwiperSlide>
           <Button className={`${categorySelected === '' || categorySelected === " " ? 'bg-primary': 'bg-warning/90'}`} onClick={() => onSelectCategory(" ")}>All</Button>
         </SwiperSlide>

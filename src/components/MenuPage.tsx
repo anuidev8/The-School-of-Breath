@@ -52,7 +52,7 @@ const MenuPage = () => {
   return (
     <Layout title="Sleep Music">
       <div className="menu-page">
-        <div className="relative w-full z-50">
+        <div className="relative w-full z-10">
           <div className="pt-5 ">
        
           <CategorySelector  categorySelected={selectedCategory} onSelectCategory={onSetSelectedCategory} />

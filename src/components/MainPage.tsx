@@ -99,7 +99,7 @@ const MainPage = () => {
     }
   };
   const getAudioSource = (music: string) => {
-    const findAudioName = `${urlApi}/uploadFiles/file/${music}`;
+    const findAudioName = `${music}`;
     return findAudioName;
   };
 
@@ -318,7 +318,7 @@ const MainPage = () => {
                         <figure className=" flex justify-center m-0 bg-black w-full ">
                           <img
                             className="object-contain w-80 h-80"
-                            src={`${urlApi}/uploadFiles/file/${background.imageFilename}`}
+                            src={`${background.imageFilename}`}
                             loading="lazy"
                             alt={background.name}
                           />

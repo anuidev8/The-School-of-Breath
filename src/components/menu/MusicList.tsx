@@ -24,12 +24,12 @@ const MusicItem = ({ music,hasFavorite ,handleSelectBackground,onDataRefetch}:Mu
   const imgRef = useRef<HTMLImageElement>(null);
   const [isImgLoading,setIsImgLoading] = useState(false)
   /* const isVisible = useLazyLoad(imgRef); */
-  const imageUrl = `${urlApi}/uploadFiles/file/${music.imageFilename}` 
+  /* const imageUrl = `${urlApi}/uploadFiles/file/${music.imageFilename}`  */
   const { toggleFavorite,isMutating} = useToggleFavorite(urlApi,onDataRefetch)
   
 
   return (
-    <li  className="music-list-audio min-h-64 relative z-50" >
+    <li  className="music-list-audio min-h-64 relative  overflow-hidden rounded-lg" >
     
       <button className="music-option" onClick={()=>handleSelectBackground(music)}>
         <div className="music-image h-48 flex justify-center items-center relative">
@@ -46,7 +46,7 @@ const MusicItem = ({ music,hasFavorite ,handleSelectBackground,onDataRefetch}:Mu
           <img
             ref={imgRef}
            /*  src={isImgLoading ? imageUrl : 'images/placeholder.jpg'} */
-           src={ imageUrl }
+           src={ music.imageFilename}
             alt={music.name}
             loading="lazy"
             width={"100%"}
@@ -59,7 +59,7 @@ const MusicItem = ({ music,hasFavorite ,handleSelectBackground,onDataRefetch}:Mu
         </div>
       
       </button>
-      <p className="w-full music-item-p relative z-50 pr-12">
+      <p className="w-full music-item-p relative  pr-12">
         { isMutating &&
          <div className="like-button">
          <Lottie className="-translate-y-10 translate-x-5" animationData={LikeIcon} loop={true}   />

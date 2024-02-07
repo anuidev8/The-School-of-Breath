@@ -5,14 +5,14 @@
     background:none;
     color: #f6bb0b;
     border: none;
-    z-index: 102;
+  
 }
 .like-button-m{
 
   background:none;
   color: #f6bb0b;
   border: none;
-  z-index: 102;
+  
 }
 
 .menu-page{
@@ -117,7 +117,7 @@
 
     margin: 0;
     padding: .8rem;
-    z-index: 100;
+    
     
   }
   .music-list-audio h3{
