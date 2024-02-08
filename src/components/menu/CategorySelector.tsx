@@ -4,6 +4,11 @@ import { Button } from "@nextui-org/react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import 'swiper/css/free-mode';
+
+import { FreeMode } from 'swiper/modules';
+
+
 
 export interface CategoryType {
   name: string;
@@ -17,6 +22,7 @@ export const CategorySelector: FC<{
 }> = ({ onSelectCategory,categorySelected }) => {
   const { data: categories, isLoading, error } = useCategories();
 
+  
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error has occurred: {error.message}</div>;
   if (categories?.length === 0) return <div>No categories available.</div>;
@@ -24,19 +30,20 @@ export const CategorySelector: FC<{
   return (
     <div className="mt-6">
       <Swiper
-        className="h-24"
+      className="h-24 "
       freeMode={true}
-      
-      spaceBetween={10}
+      modules={[FreeMode]}
+      spaceBetween={0}
       slidesPerView={4}
        
       >
-    
-        <SwiperSlide>
+        
+        <SwiperSlide className="">
           <Button className={`${categorySelected === '' || categorySelected === " " ? 'bg-primary': 'bg-warning/90'}`} onClick={() => onSelectCategory(" ")}>All</Button>
         </SwiperSlide>
+  
         {categories?.map((category) => (
-          <SwiperSlide key={category.name}>
+          <SwiperSlide className="" key={category.name}>
             <Button
             className={`${categorySelected === category._id ? 'bg-primary': 'bg-warning/90'}`}
               key={category.name}

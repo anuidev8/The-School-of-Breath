@@ -13,10 +13,11 @@ import {
   Link,
 } from "@nextui-org/react";
 import { MdArrowBack } from "react-icons/md";
-import { FaUserCircle, FaWind } from "react-icons/fa";
+import { FaHeart, FaUserCircle, FaWind } from "react-icons/fa";
 
 import { getPersistData } from "../../utils/localstore";
 import { filterByName } from "../../routes/SubscriptionAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 interface MenuProps {
   title?: string;
   navBarClassName?: string;
@@ -31,7 +32,8 @@ function getPromotionCountdown(promotionDays: number) {
 
 export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const location = useLocation()
+  const navigate = useNavigate()
   const user = getPersistData("user");
   const userFromSystemeIo = getPersistData("userFromSystemeIo");
 
@@ -64,6 +66,8 @@ export function Menu({ title, navBarClassName, children, onBack }: MenuProps) {
           <h1 className="text-xl font-medium text-center">{title}</h1>
         </NavbarItem>
         {children && children}
+        {location.pathname !== '/main' &&   <Button isIconOnly onClick={()=>navigate('/favorites')} className="bg-white/20 "><FaHeart /></Button> }
+       
         <Button isIconOnly color="primary" aria-label="back">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}

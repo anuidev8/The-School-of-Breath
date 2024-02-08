@@ -39,7 +39,6 @@ const MainPage = () => {
     selectedBackground,
     selectBackground,
     activeSoundEffects,
-    hasInteracted,
     setActiveSoundEffects,
     handleUserInteraction,
   } = useBackground();
@@ -66,17 +65,14 @@ const MainPage = () => {
   }, []); // Add more as needed
   const [isPlaying, setIsPlaying] = useState<boolean>();
   useEffect(() => {
-
-    if (audioRef.current && hasInteracted) {
-      audioRef.current.src = getAudioSource(
-        selectedBackground?.audioFilename ?? ""
-      );
-     
-      
-      audioRef.current.load();
+    
+    if (audioRef.current) {
+      const audioSrc = getAudioSource(selectedBackground?.audioFilename ?? "");
+      audioRef.current.src = audioSrc;
+      audioRef.current.load(); // This will trigger onLoadedMetadata when metadata is loaded
       setIsPlaying(true);
     }
-  }, [selectedBackground, hasInteracted,menuList]);
+  }, [selectedBackground]);
   useEffect(() => {
     // Initialize soundEffectRefs
     soundEffectList.forEach((effect) => {
@@ -223,11 +219,9 @@ const MainPage = () => {
 
   const { toggleFavorite, isMutating } = useToggleFavorite(urlApi, refetch);
 
-  if (isLoading) return <div>Loading...</div>;
+
   if (error) return <div>An error has occurred: {error.message}</div>;
-  if (menuList?.length === 0) return <div>No categories available.</div>;
-
-
+  if (menuList?.length === 0) return <div>No musics available.</div>;
 
   const user = getPersistData("user") ?? null;
 
@@ -271,12 +265,12 @@ const MainPage = () => {
           onLoadedData={onAudioLoad}
           onLoadStart={onAudioLoadStart}
         />
-        {isAudioLoading && (
+        {isAudioLoading && isLoading  && (
           <div className="h-screen flex justify-center items-center">
             <CardLoader />
           </div>
         )}
-        {!isAudioLoading && (
+        {!isAudioLoading && !isLoading  && (
           <>
             <div className="pt-8 your-horizontal-scroll-container appear">
               {initialSlideIndex !== null && (
@@ -317,29 +311,36 @@ const MainPage = () => {
                       >
                         <figure className=" flex justify-center m-0 bg-black w-full ">
                           <img
-                            className="object-contain w-80 h-80"
+                            className="object-contain w-80 h-72"
                             src={`${background.imageFilename}`}
                             loading="lazy"
                             alt={background.name}
                           />
                         </figure>
+                        <div className="relative h-7 w-full">
+                       
                         {
-                          isMutating &&
-                           <div className="translate-y-0 ">
-                           <Lottie className="-translate-y-10 translate-x-5" animationData={LikeIcon} loop={true}   />
-                       </div>
-                        }
-                        {!isMutating && (
-                          <div className="relative">
+                          isMutating && 
+                            <div className=" absolute z-20 w-14 h-14 -top-2 left-2/4 -translate-x-2/4">
+                            <Lottie style={{ }} className="translate-x-0" animationData={LikeIcon} loop={true}   />
+                        </div>
+                          }
+                         
+                           
+                        
+                       {!isMutating && (
+                          <div className="relative z-10">
                           <LikeButton
-                          className="like-button-m translate-y-12"
+                          className="like-button-m "
                             onToggle={() => toggleFavorite(background.id)}
                             isFavorite={isFavorite(background.favorites)}
                           />
                           </div>
-                        )}
-                        <div></div>
-                        <div className="relative text-white font-bold text-xl mt-0 -translate-y-8">
+                        )} 
+
+                        </div>
+                       
+                        <div className="relative text-white font-bold text-xl mt-0 min-h-14">
                           {background.name}
                         </div>
                       </SwiperSlide>
@@ -348,7 +349,7 @@ const MainPage = () => {
               )}
             </div>
 
-            <div className=" flex justify-center text-white w-full appear">
+            <div className=" flex justify-center text-white w-full appear mt-4">
               <Swiper
                 freeMode={true}
                 modules={[FreeMode]}
@@ -405,7 +406,7 @@ const MainPage = () => {
               onTimerEnd={handleTimerEnd}
             />
 
-            <div className="container-box  w-full mt-24 flex justify-around appear">
+            <div className="container-box  w-full mt-16 flex justify-around appear">
               <Button
                 isIconOnly
                 className="arrow-left arrow bg-transparent text-2xl"

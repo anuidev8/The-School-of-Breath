@@ -10,6 +10,7 @@ import LikeIcon from  '../../assets/animation.json'
 import Lottie from "lottie-react";
 import LikeButton from "./LikeButton";
 import useToggleFavorite from "../../hooks/useToggleFavorite";
+import useLazyLoad from "../../hooks/useLazyLoad";
 
 
 interface MusicItemType {
@@ -23,13 +24,13 @@ interface MusicItemType {
 const MusicItem = ({ music,hasFavorite ,handleSelectBackground,onDataRefetch}:MusicItemType) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [isImgLoading,setIsImgLoading] = useState(false)
-  /* const isVisible = useLazyLoad(imgRef); */
-  /* const imageUrl = `${urlApi}/uploadFiles/file/${music.imageFilename}`  */
+  const isVisible = useLazyLoad(imgRef); 
+  const imageUrl = isVisible && `${music.imageFilename}` 
   const { toggleFavorite,isMutating} = useToggleFavorite(urlApi,onDataRefetch)
   
 
   return (
-    <li  className="music-list-audio min-h-64 relative  overflow-hidden rounded-lg" >
+    <li  className="music-list-audio min-h-64 relative  mt-4 overflow-hidden rounded-lg" >
     
       <button className="music-option" onClick={()=>handleSelectBackground(music)}>
         <div className="music-image h-48 flex justify-center items-center relative">
@@ -46,7 +47,7 @@ const MusicItem = ({ music,hasFavorite ,handleSelectBackground,onDataRefetch}:Mu
           <img
             ref={imgRef}
            /*  src={isImgLoading ? imageUrl : 'images/placeholder.jpg'} */
-           src={ music.imageFilename}
+           src={ `${imageUrl}`}
             alt={music.name}
             loading="lazy"
             width={"100%"}
