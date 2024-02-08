@@ -260,7 +260,7 @@ const MainPage = () => {
     >
       <div className="main-page">
       <audio
-     
+          loop
           ref={audioRef}
           onLoadedData={onAudioLoad}
           onLoadStart={onAudioLoadStart}
