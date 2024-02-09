@@ -54,7 +54,7 @@ export const WelcomePage = () => {
         className="mt-12 bg-secondary"
         onClick={onNavigate}
       >
-        Start relaxing now
+        Start Conscious Breaths
       </Button>
       <ToastContainer />
     </main>
