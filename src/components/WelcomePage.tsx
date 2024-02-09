@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import welcomeTitle from "../assets/welcome_title.gif";
-import welcomeFrequency from "../assets/welcome_frequency.gif";
+import welcomeTitle from "../assets/welcome_title1.gif";
+import welcomeFrequency from "../assets/welcome_frequency1.gif";
 import "../styles/WelcomePage.css";
 import { Button } from "@nextui-org/react";
 import { updateSubscriptionStatus } from "./adapters/updatedUserActive";
