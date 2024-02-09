@@ -8,7 +8,7 @@ export const AppWebScreen = () =>{
             <div>
             <Lottie color="yellow"  animationData={feedbackAnimation} loop={true} />
             </div>
-            <h1 className="text-white text-2xl mb-4">Welcome to sleep app music</h1>
+            <h1 className="text-white text-2xl mb-4">Welcome to The School of Breath </h1>
          
             <h2 className="text-white 2xl">We're working in a web version , for now enjoy the mobile version</h2>
 
